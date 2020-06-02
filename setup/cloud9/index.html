@@ -1,0 +1,515 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.0">
+    
+    
+      
+        <title>環境構築 - Auth0 AppSync React ハンズオン</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.18ac144a.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosansjp.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:600,800">
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cloud9" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Auth0 AppSync React ハンズオン" class="md-header-nav__button md-logo" aria-label="Auth0 AppSync React ハンズオン">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Auth0 AppSync React ハンズオン
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              環境構築
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Auth0 AppSync React ハンズオン" class="md-nav__button md-logo" aria-label="Auth0 AppSync React ハンズオン">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Auth0 AppSync React ハンズオン
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        環境構築
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="環境構築" class="md-nav__link md-nav__link--active">
+      環境構築
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cloud9_1" class="md-nav__link">
+    Cloud9とは
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloud9_2" class="md-nav__link">
+    なぜ今回Cloud9を使うか
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloud9-environment" class="md-nav__link">
+    Cloud9 Environmentの作成
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nodenvanyenv" class="md-nav__link">
+    nodenv(anyenv)のインストール
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws" class="md-nav__link">
+    AWSリージョンの設定
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      ハンズオン
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="ハンズオン" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+        </span>
+        ハンズオン
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../hands-on/react/react/" title="Reactでサンプルアプリを構築する" class="md-nav__link">
+      Reactでサンプルアプリを構築する
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#cloud9_1" class="md-nav__link">
+    Cloud9とは
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloud9_2" class="md-nav__link">
+    なぜ今回Cloud9を使うか
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cloud9-environment" class="md-nav__link">
+    Cloud9 Environmentの作成
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nodenvanyenv" class="md-nav__link">
+    nodenv(anyenv)のインストール
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aws" class="md-nav__link">
+    AWSリージョンの設定
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="cloud9">Cloud9による環境の準備</h1>
+<h2 id="cloud9_1">Cloud9とは</h2>
+<p>AWSが提供しているクラウド上で動く､アプリケーション開発環境です｡<br />
+コードエディタと開発環境がWeb上から使えます｡<br />
+AWS CLIとAWS SAM CLIなどAWSを使った開発に必要なツールや基本的な言語環境が
+インストール済みです｡  </p>
+<p><a href="https://aws.amazon.com/jp/cloud9/" target="_blank">AWS Cloud9（Cloud IDE でコードを記述、実行、デバッグ）| AWS </a>    </p>
+<h2 id="cloud9_2">なぜ今回Cloud9を使うか</h2>
+<ul>
+<li>最初からAWSを使った開発に必要なツールがインストールされている</li>
+<li>環境の準備という本質的でない所でつまづいて欲しくない</li>
+<li>ハンズオンの性質上ローカルマシンを統一できない</li>
+</ul>
+<p>弊社とは無関係ですが､実際の開発現場で使用されている例もあります｡  </p>
+<p><a href="https://speakerdeck.com/marumoto/jaws-days2018?slide=75" target="_blank">ユーザー企業におけるサーバレスシステムへの移行/JAWS DAYS2018 </a>    </p>
+<h2 id="cloud9-environment">Cloud9 Environmentの作成</h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>マネジメントコンソールの右上で､
+リージョンが<strong>東京(ap-northeast-1)</strong>になっている事を確認してください｡</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>SafariでCloud9を使用する場合には､<strong>サイト越えトラッキングを防ぐ</strong>と<strong>すべてのCookieをブロック</strong>を無効にする必要があります｡<br />
+<a href="https://support.apple.com/ja-jp/guide/safari/sfri11471/mac" target="_blank">Mac の Safari で Cookie と Web サイトのデータを管理する </p>
+</div>
+<p></a></p>
+<ol>
+<li><a href="https://ap-northeast-1.console.aws.amazon.com/cloud9/home/product" target="_blank">AWS Cloud9 </a>を開く   </li>
+<li><strong>Create environment</strong>を選択します｡  </li>
+<li>環境を設定し､<strong>Next step</strong>を選択します｡  <ul>
+<li>Name: hands-on</li>
+<li>Description: 何も入力しない</li>
+</ul>
+</li>
+<li>デフォルトの設定のまま､<strong>Next step</strong>を選択します｡ <ul>
+<li>Environment type: Create a new instance for environment (EC2)</li>
+<li>Instance type: t2.micro (1 GiB RAM + 1 vCPU)</li>
+<li>Platform: Amazon Linux</li>
+<li>Cost-saving setting: Afrer 30minutes(default)</li>
+<li>IAM role: AWSServiceRoleForAWSCloud9</li>
+</ul>
+</li>
+<li>設定を確認し､<strong>Create environment</strong>を選択します｡</li>
+<li>Cloud9が起動します｡  </li>
+</ol>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Cloud9を開いているウィンドウを閉じてしまった場合は､再度<a href="https://ap-northeast-1.console.aws.amazon.com/cloud9/home/product" target="_blank">AWS Cloud9 </a>を開き､
+<strong>hands-on</strong>の<strong>Open IDE</strong>を選択します｡</p>
+</div>
+<h2 id="nodenvanyenv">nodenv(anyenv)のインストール</h2>
+<p>多言語に対応している開発環境のバージョン管理ツール<a href="https://github.com/anyenv/anyenv" target="_blank">anyenv</a> を使って、Node.jsのバージョン管理ツール<a href="https://github.com/nodenv/nodenv" target="_blank">nodenv</a>をインストールします。</p>
+<p>本ハンズオンでは、現時点でのNode.js LTS版の<code>12.16.3</code>を使用します。</p>
+<div class="codehilite"><pre><span></span><code>git clone https://github.com/anyenv/anyenv ~/.anyenv
+echo &#39;export PATH=&quot;<span class="nv">$HOME</span>/.anyenv/bin:<span class="nv">$PATH</span>&quot;&#39; &gt;&gt; ~/.bash_profile
+echo &#39;eval &quot;$(anyenv init -)&quot;&#39; &gt;&gt; ~/.bash_profile
+~/.anyenv/bin/anyenv init
+exec <span class="nv">$SHELL</span> -l
+anyenv install --init
+anyenv install nodenv
+exec <span class="nv">$SHELL</span> -l
+NODE_VERSION=12.16.3
+nodenv install <span class="cp">${</span><span class="n">NODE_VERSION</span><span class="cp">}</span>
+nodenv global <span class="cp">${</span><span class="n">NODE_VERSION</span><span class="cp">}</span>
+exec <span class="nv">$SHELL</span> -l
+</code></pre></div>
+
+
+<p>途中で何回か実行している<code>exec $SHELL -l</code>はシェルを再読み込みするコマンドです。</p>
+<h2 id="aws">AWSリージョンの設定</h2>
+<p>ハンズオンではAWS CLIを使い､コマンドラインでAWSを操作します｡<br />
+利用するAWSリージョンを指定する為に､環境変数を設定します｡  </p>
+<div class="codehilite"><pre><span></span><code><span class="nb">echo</span> <span class="s1">&#39;AWS_DEFAULT_REGION=&quot;ap-northeast-1&quot;&#39;</span> &gt;&gt; ~/.bashrc
+<span class="nb">source</span> ~/.bashrc
+</code></pre></div>
+
+
+<p>設定を確認します｡  </p>
+<div class="codehilite"><pre><span></span><code><span class="nb">echo</span> <span class="si">${</span><span class="nv">AWS_DEFAULT_REGION</span><span class="si">}</span>
+aws ec2 describe-instances --query <span class="se">\</span>
+    <span class="s1">&#39;sort_by(Reservations[].Instances[].{Tags:Tags[?Key==`Name`].Value|[0],InstanceType:InstanceType,State:State.Name},&amp;Tags)&#39;</span> --output table
+</code></pre></div>
+
+
+<p>(例)</p>
+<div class="codehilite"><pre><span></span><code>ap-northeast-1
+-----------------------------------------------------------------------------------------
+|                                   DescribeInstances                                   |
++--------------+----------+-------------------------------------------------------------+
+| InstanceType |  State   |                            Tags                             |
++--------------+----------+-------------------------------------------------------------+
+|  t2.micro    |  running |  aws-cloud9-hands-on-[Random alphanumeric]              |
++--------------+----------+-------------------------------------------------------------+
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+        
+          <a href="../../hands-on/react/react/" title="Reactでサンプルアプリを構築する" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Reactでサンプルアプリを構築する
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.27c6a5e6.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
