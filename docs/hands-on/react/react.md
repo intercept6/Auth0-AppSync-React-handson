@@ -229,7 +229,7 @@ CRAで生成されたCSS等使わないので削除してしまいましょう�
 - App.css
 - App.test.tsx
 
-パート１はここまでです。アプリケーションを実行して、ログインが出来るか確認します。
+アプリケーションを実行して、ログインが出来るか確認します。
 
 まず、テスト用のユーザーをAuth0に作成します。Auth0のDashbordを開き、**Users & Roles**、**Users**とメニューを選択し、**CREATE USER**を選択します。
 
@@ -263,6 +263,176 @@ Auth0のユニバーサルログイン画面にリダイレクトされるので
 
 一瞬、**Loading...**と表示された後に、**Log out**ボタンだけの素朴な画面に戻れば成功です。
 
-**Log out**を選択してログアウトしておきます。以降もアプリケーションを編集する前にはログアウトしてから行います。特にパート４で**audience**を設定する際には事前にログアウトが必須です。
+**Log out**を選択してログアウトしておきます。以降もアプリケーションを編集する前にはログアウトしてから行います。特に後ほど**audience**を設定する際には事前にログアウトが必須です。
 
 ![](img/app-logout.png)
+
+
+## プロフィール画面にユーザー情報を表示する
+
+**Token**の情報を表示するプロフィール画面を作成します。**Token**から情報を表示するのでログイン済みである必要があります。これに対応する為に、ログインしていなければAuth0のユニバーサルログイン画面へリダイレクトするPrivate Routeコンポーネントを作成します。
+
+プロフィール画面を作成します。Auth0 Custom Hookからユーザー情報を取得し、表示します。
+
+```typescript
+// ./src/components/Profile.tsx
+import React  from "react";
+import { useAuth0 } from "../react-auth0-spa";
+
+export const Profile = () => {
+  const { loading, user } = useAuth0();
+
+  if (loading || !user) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <>
+      <img src={user.picture} alt="Profile" />
+
+      <h2>{user.name}</h2>
+      <p>{user.email}</p>
+      <code>{JSON.stringify(user, null, 2)}</code>
+    </>
+  );
+};
+```
+
+`NavBar.tsx`を変更し、Profile画面に移動できるようにします。
+
+```tsx
+// ./src/components/NavBar.tsx
+import React from 'react';
+import { useAuth0 } from '../react-auth0-spa';
+import { Link } from 'react-router-dom';
+
+export const NavBar = () => {
+  const {isAuthenticated, loginWithRedirect, logout} = useAuth0();
+
+  return (
+    <div>
+      {!isAuthenticated && (
+        <button onClick={() => loginWithRedirect()}>Log in</button>
+      )}
+      {isAuthenticated && (
+        <>
+          <button onClick={() => logout()}>Log out</button>
+          <span>
+            <Link to="/">Home</Link> | <Link to="/profile">Profile</Link>
+          </span>
+        </>
+      )}
+    </div>
+  );
+};
+
+```
+
+`App.tsx`を変更しProfile画面へのルーティングを定義します。
+
+```typescript
+// ./src/App.tsx
+import React from "react";
+import { NavBar } from "./components/NavBar";
+import { Router, Route, Switch } from "react-router-dom";
+import { Profile } from "./components/Profile";
+import { history } from "./utils/history";
+
+export const App = () => {
+  return (
+    <div className="App">
+      <Router history={history}>
+        <header>
+          <NavBar />
+        </header>
+        <Switch>
+          <Route path="/" exact />
+          <Route path="/profile" component={Profile} />
+        </Switch>
+      </Router>
+    </div>
+  );
+};
+
+```
+
+まだ、リダイレクトが設定されていないので、下記のURLへアクセスするとLoading状態のまま遷移しません。
+
+[http://localhost:3000/profile](http://localhost:3000/profile)
+
+![](img/app-loading.png)
+
+Private Route コンポーネントを作成します。このコンポーネントは React RouterのRouteコンポーネントのWrapperでログインしていなければ、ユニバーサルログイン画面にリダイレクトします。
+
+```typescript
+// ./src/components/PrivateRoute.tsx
+import React from 'react';
+import { Route, RouteProps } from 'react-router-dom';
+import { useAuth0 } from '../react-auth0-spa';
+
+export const PrivateRoute: React.FC<RouteProps> = ({ component: Component, path, ...rest }) => {
+  const { loading, isAuthenticated, loginWithRedirect } = useAuth0();
+
+  React.useEffect(() => {
+    if (loading || isAuthenticated) {
+      return;
+    }
+    const fn = async () => {
+      await loginWithRedirect({
+        appState: {targetUrl: window.location.pathname}
+      });
+    };
+    fn();
+  }, [loading, isAuthenticated, loginWithRedirect, path]);
+
+  const render: RouteProps['render'] = props => {
+    if (isAuthenticated && Component != null) {
+      return <Component {...props} />;
+    }
+
+    return null;
+  };
+
+  return <Route path={path} render={render} {...rest} />;
+};
+
+```
+
+`App.tsx`を変更して、Profile画面をPrivate Routeで保護します。
+
+```typescript
+import React from "react";
+import { NavBar } from "./components/NavBar";
+import { Router, Route, Switch } from "react-router-dom";
+import { Profile } from "./components/Profile";
+import { history } from "./utils/history";
+import { PrivateRoute } from './components/PrivateRoute';
+
+export const App = () => {
+  return (
+    <div className="App">
+      <Router history={history}>
+        <header>
+          <NavBar />
+        </header>
+        <Switch>
+          <Route path="/" exact />
+          <PrivateRoute path="/profile" component={Profile} />
+        </Switch>
+      </Router>
+    </div>
+
+  );
+};
+
+```
+
+アプリケーションを実行して、ログアウト状態でProfile画面にアクセスしようとするとリダイレクトされるか確認します。ログアウトした状態で下記のURLへアクセスします。
+
+[http://localhost:3000/profile](http://localhost:3000/profile)
+
+Auth0のユニバーサルログイン画面へリダイレクトされるので、EmailとPasswordを入力します。
+
+Profile画面が表示されます。表示を確認できたら、ログアウトしておきます。
+
+![](img/app-profile.png)
