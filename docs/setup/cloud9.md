@@ -51,9 +51,9 @@ AWS CLIとAWS SAM CLIなどAWSを使った開発に必要なツールや基本�
 
 ## nodenv(anyenv)のインストール
 
-多言語に対応している開発環境のバージョン管理ツール<a href="https://github.com/anyenv/anyenv" target="_blank">anyenv</a> を使って、Node.jsのバージョン管理ツール<a href="https://github.com/nodenv/nodenv" target="_blank">nodenv</a>をインストールします。
+多言語に対応している開発環境のバージョン管理ツール<a href="https://github.com/anyenv/anyenv" target="_blank">anyenv</a> を使って、Node.jsのバージョン管理ツール<a href="https://github.com/nodenv/nodenv" target="_blank">nodenv</a>をインストールします．
 
-本ハンズオンでは、現時点でのNode.js LTS版の`12.16.3`を使用します。
+本ハンズオンでは、現時点でのNode.js LTS版の`12.16.3`を使用します．
 
 ```
 git clone https://github.com/anyenv/anyenv ~/.anyenv
@@ -70,7 +70,7 @@ nodenv global ${NODE_VERSION}
 exec $SHELL -l
 ```
 
-途中で何回か実行している`exec $SHELL -l`はシェルを再読み込みするコマンドです。
+途中で何回か実行している`exec $SHELL -l`はシェルを再読み込みするコマンドです．
 
 ## AWSリージョンの設定
 
