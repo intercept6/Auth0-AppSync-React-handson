@@ -243,6 +243,47 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#schemahooks" class="md-nav__link">
+    Schemaの取得と型とHooksを生成する
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    付録
+  </a>
+  
+    <nav class="md-nav" aria-label="付録">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema" class="md-nav__link">
+    取得したSchema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documents" class="md-nav__link">
+    生成されたDocuments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#react-custom-hook" class="md-nav__link">
+    生成された型とReact Custom Hook
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -294,6 +335,47 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#schemahooks" class="md-nav__link">
+    Schemaの取得と型とHooksを生成する
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    付録
+  </a>
+  
+    <nav class="md-nav" aria-label="付録">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema" class="md-nav__link">
+    取得したSchema
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documents" class="md-nav__link">
+    生成されたDocuments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#react-custom-hook" class="md-nav__link">
+    生成された型とReact Custom Hook
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -311,24 +393,24 @@
                 
                 
                 <h1 id="react">Reactでサンプルアプリを構築する</h1>
-<p>作成したAppSyncにを利用するフロントエンドアプリケーションをReactで作成しましょう。</p>
+<p>作成したAppSyncにを利用するフロントエンドアプリケーションをReactで作成しましょう．</p>
 <!-- TODO: Reactに関する簡単な説明 -->
 
 <p>TODO: Reactに関する簡単な説明 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
 <h2 id="create-react-app">Create React Appを使ってセットアップする</h2>
-<p>Create React App（CRA）を使ってアプリケーションを生成します。任意の作業用ディレクトリに移動後、下記のコマンドを実行します。</p>
+<p>Create React App（CRA）を使ってアプリケーションを生成します．任意の作業用ディレクトリに移動後、下記のコマンドを実行します．</p>
 <div class="codehilite"><pre><span></span><code>npx create-react-app@3.4.1 --template typescript react-appsync-protected-by-auth0
 <span class="nb">cd</span> react-appsync-protected-by-auth0
 </code></pre></div>
 
 
-<p>React RouterとAuth0のSPA用SDKをインストールします。</p>
+<p>React RouterとAuth0のSPA用SDKをインストールします．</p>
 <div class="codehilite"><pre><span></span><code>yarn add react-router-dom@5.1.2 @auth0/auth0-spa-js@1.8.1
 yarn add -D @types/react-router-dom@5.1.2
 </code></pre></div>
 
 
-<p>Auth0をReactで利用する為のCustom Hookを作成します。</p>
+<p>Auth0をReactで利用する為のCustom Hookを作成します．</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">// ./src/react-auth0-spa.tsx</span>
 <span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
 <span class="kr">import</span> <span class="nx">createAuth0Client</span><span class="p">,</span> <span class="p">{</span>
@@ -444,7 +526,7 @@ yarn add -D @types/react-router-dom@5.1.2
 </code></pre></div>
 
 
-<p>ログイン／ログアウト操作を行わせる為にNavBarを作成します。</p>
+<p>ログイン／ログアウト操作を行わせる為にNavBarを作成します．</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">// ./src/components/NavBar.tsx</span>
 <span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&quot;react&quot;</span><span class="p">;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">useAuth0</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;../react-auth0-spa&quot;</span><span class="p">;</span>
@@ -465,16 +547,16 @@ yarn add -D @types/react-router-dom@5.1.2
 </code></pre></div>
 
 
-<p>historyを生成し、どこからでもアクセスが出来るようにします。
+<p>historyを生成し、どこからでもアクセスが出来るようにします．
 TODO: この部分の説明が怪しい
-useHistory() Hookを使わずに、createBrowserHistory()を使っているのは、前者はRouteコンポーネント配下でしか使えないが、後者はどこでも使える（少なくともpushの定義は出来る）からです。</p>
+useHistory() Hookを使わずに、createBrowserHistory()を使っているのは、前者はRouteコンポーネント配下でしか使えないが、後者はどこでも使える（少なくともpushの定義は出来る）からです．</p>
 <div class="codehilite"><pre><span></span><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">createBrowserHistory</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;history&quot;</span><span class="p">;</span>
 <span class="kr">export</span> <span class="kr">const</span> <span class="nx">history</span> <span class="o">=</span> <span class="nx">createBrowserHistory</span><span class="p">();</span>
 </code></pre></div>
 
 
-<p>Auth0の設定をアプリケーションが取り込めるようにJSON形式で保存します。先程作成した、Auth0のApplication定義のSettingsタブからDomainとClient IDを転記してください。
-今回はサンプルアプリケーションなので、環境（dev/stg/prd）差分を考慮せずパラメーターをハードコートしています。</p>
+<p>Auth0の設定をアプリケーションが取り込めるようにJSON形式で保存します．先程作成した、Auth0のApplication定義のSettingsタブからDomainとClient IDを転記してください．
+今回はサンプルアプリケーションなので、環境（dev/stg/prd）差分を考慮せずパラメーターをハードコートしています．</p>
 <p><img alt="" src="../img/auth0-get-domain-and-client-id.png" /></p>
 <div class="codehilite"><pre><span></span><code><span class="err">#</span> <span class="err">./src/auth-config.json</span>
 <span class="p">{</span>
@@ -484,7 +566,7 @@ useHistory() Hookを使わずに、createBrowserHistory()を使っているの�
 </code></pre></div>
 
 
-<p>作成したAuth0 Custom Hookをアプリケーションに結合させる為に、<code>index.tsx</code>を編集します。</p>
+<p>作成したAuth0 Custom Hookをアプリケーションに結合させる為に、<code>index.tsx</code>を編集します．</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">// ./src/index.tsx</span>
 <span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
 <span class="kr">import</span> <span class="nx">ReactDOM</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span><span class="p">;</span>
@@ -519,7 +601,7 @@ useHistory() Hookを使わずに、createBrowserHistory()を使っているの�
 </code></pre></div>
 
 
-<p>CRAで生成されたCSS等使わないので削除してしまいましょう。</p>
+<p>CRAで生成されたCSS等使わないので削除してしまいましょう．</p>
 <ul>
 <li>logo.svg</li>
 <li>index.tsx</li>
@@ -527,30 +609,30 @@ useHistory() Hookを使わずに、createBrowserHistory()を使っているの�
 <li>App.css</li>
 <li>App.test.tsx</li>
 </ul>
-<p>アプリケーションを実行して、ログインが出来るか確認します。</p>
-<p>まず、テスト用のユーザーをAuth0に作成します。Auth0のDashbordを開き、<strong>Users &amp; Roles</strong>、<strong>Users</strong>とメニューを選択し、<strong>CREATE USER</strong>を選択します。</p>
+<p>アプリケーションを実行して、ログインが出来るか確認します．</p>
+<p>まず、テスト用のユーザーをAuth0に作成します．Auth0のDashbordを開き、<strong>Users &amp; Roles</strong>、<strong>Users</strong>とメニューを選択し、<strong>CREATE USER</strong>を選択します．</p>
 <p><img alt="" src="../img/auth0-list-users.png" /></p>
-<p>ユーザーのEmailとPasswordを入力し、<strong>CREATE</strong>を選択します。</p>
+<p>ユーザーのEmailとPasswordを入力し、<strong>CREATE</strong>を選択します．</p>
 <p><img alt="" src="../img/auth0-create-user.png" /></p>
-<p>ベリファイのメールが届くのでリンクをクリックして、ユーザーを使用可能な状態に遷移させます。</p>
+<p>ベリファイのメールが届くのでリンクをクリックして、ユーザーを使用可能な状態に遷移させます．</p>
 <p><img alt="" src="../img/auth0-verify-mail.png" /></p>
-<p>ユーザーの準備ができたので、アプリケーションを実行しログインが行えるか確認します。下記のコマンドで実行すると、デフォルトブラウザで <a href="http://loclahost:3000">http://loclahost:3000</a> が開きます。自動でブラウザが開かない場合は手動でURLを入力してアクセスしてください。</p>
+<p>ユーザーの準備ができたので、アプリケーションを実行しログインが行えるか確認します．下記のコマンドで実行すると、デフォルトブラウザで <a href="http://loclahost:3000">http://loclahost:3000</a> が開きます．自動でブラウザが開かない場合は手動でURLを入力してアクセスしてください．</p>
 <div class="codehilite"><pre><span></span><code>yarn start
 </code></pre></div>
 
 
-<p>ブラウザで素朴な画面が表示されるので、Log inボタンを選択します。</p>
+<p>ブラウザで素朴な画面が表示されるので、Log inボタンを選択します．</p>
 <p><img alt="" src="../img/app-login.png" /></p>
-<p>Auth0のユニバーサルログイン画面にリダイレクトされるので、テストユーザーのEmailとPasswordを入力し、<strong>LOG IN</strong>を選択します。</p>
+<p>Auth0のユニバーサルログイン画面にリダイレクトされるので、テストユーザーのEmailとPasswordを入力し、<strong>LOG IN</strong>を選択します．</p>
 <p><img alt="" src="../img/auth0-universal-login.png" /></p>
-<p>アプリケーションに対する認可を確認されるのでチェックアイコンを選択します。アプリケーションにアイコンを設定していないので、画像が表示されていませんね。</p>
+<p>アプリケーションに対する認可を確認されるのでチェックアイコンを選択します．アプリケーションにアイコンを設定していないので、画像が表示されていませんね．</p>
 <p><img alt="" src="../img/auth0-universal-login-authorize.png" /></p>
-<p>一瞬、<strong>Loading...</strong>と表示された後に、<strong>Log out</strong>ボタンだけの素朴な画面に戻れば成功です。</p>
-<p><strong>Log out</strong>を選択してログアウトしておきます。以降もアプリケーションを編集する前にはログアウトしてから行います。特に後ほど<strong>audience</strong>を設定する際には事前にログアウトが必須です。</p>
+<p>一瞬、<strong>Loading...</strong>と表示された後に、<strong>Log out</strong>ボタンだけの素朴な画面に戻れば成功です．</p>
+<p><strong>Log out</strong>を選択してログアウトしておきます．以降もアプリケーションを編集する前にはログアウトしてから行います．特に後ほど<strong>audience</strong>を設定する際には事前にログアウトが必須です．</p>
 <p><img alt="" src="../img/app-logout.png" /></p>
 <h2 id="_1">プロフィール画面にユーザー情報を表示する</h2>
-<p><strong>Token</strong>の情報を表示するプロフィール画面を作成します。<strong>Token</strong>から情報を表示するのでログイン済みである必要があります。これに対応する為に、ログインしていなければAuth0のユニバーサルログイン画面へリダイレクトするPrivate Routeコンポーネントを作成します。</p>
-<p>プロフィール画面を作成します。Auth0 Custom Hookからユーザー情報を取得し、表示します。</p>
+<p><strong>Token</strong>の情報を表示するプロフィール画面を作成します．<strong>Token</strong>から情報を表示するのでログイン済みである必要があります．これに対応する為に、ログインしていなければAuth0のユニバーサルログイン画面へリダイレクトするPrivate Routeコンポーネントを作成します．</p>
+<p>プロフィール画面を作成します．Auth0 Custom Hookからユーザー情報を取得し、表示します．</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">// ./src/components/Profile.tsx</span>
 <span class="kr">import</span> <span class="nx">React</span>  <span class="nx">from</span> <span class="s2">&quot;react&quot;</span><span class="p">;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">useAuth0</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;../react-auth0-spa&quot;</span><span class="p">;</span>
@@ -575,7 +657,7 @@ useHistory() Hookを使わずに、createBrowserHistory()を使っているの�
 </code></pre></div>
 
 
-<p><code>NavBar.tsx</code>を変更し、Profile画面に移動できるようにします。</p>
+<p><code>NavBar.tsx</code>を変更し、Profile画面に移動できるようにします．</p>
 <div class="codehilite"><pre><span></span><code><span class="o">//</span> <span class="o">./</span><span class="n">src</span><span class="o">/</span><span class="n">components</span><span class="o">/</span><span class="n">NavBar</span><span class="o">.</span><span class="n">tsx</span>
 <span class="kn">import</span> <span class="nn">React</span> <span class="nn">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
 <span class="kn">import</span> <span class="p">{</span> <span class="n">useAuth0</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;../react-auth0-spa&#39;</span><span class="p">;</span>
@@ -603,7 +685,7 @@ useHistory() Hookを使わずに、createBrowserHistory()を使っているの�
 </code></pre></div>
 
 
-<p><code>App.tsx</code>を変更しProfile画面へのルーティングを定義します。</p>
+<p><code>App.tsx</code>を変更しProfile画面へのルーティングを定義します．</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">// ./src/App.tsx</span>
 <span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&quot;react&quot;</span><span class="p">;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">NavBar</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;./components/NavBar&quot;</span><span class="p">;</span>
@@ -629,10 +711,10 @@ useHistory() Hookを使わずに、createBrowserHistory()を使っているの�
 </code></pre></div>
 
 
-<p>まだ、リダイレクトが設定されていないので、下記のURLへアクセスするとLoading状態のまま遷移しません。</p>
+<p>まだ、リダイレクトが設定されていないので、下記のURLへアクセスするとLoading状態のまま遷移しません．</p>
 <p><a href="http://localhost:3000/profile">http://localhost:3000/profile</a></p>
 <p><img alt="" src="../img/app-loading.png" /></p>
-<p>Private Route コンポーネントを作成します。このコンポーネントは React RouterのRouteコンポーネントのWrapperでログインしていなければ、ユニバーサルログイン画面にリダイレクトします。</p>
+<p>Private Route コンポーネントを作成します．このコンポーネントは React RouterのRouteコンポーネントのWrapperでログインしていなければ、ユニバーサルログイン画面にリダイレクトします．</p>
 <div class="codehilite"><pre><span></span><code><span class="c1">// ./src/components/PrivateRoute.tsx</span>
 <span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">Route</span><span class="p">,</span> <span class="nx">RouteProps</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router-dom&#39;</span><span class="p">;</span>
@@ -666,7 +748,7 @@ useHistory() Hookを使わずに、createBrowserHistory()を使っているの�
 </code></pre></div>
 
 
-<p><code>App.tsx</code>を変更して、Profile画面をPrivate Routeで保護します。</p>
+<p><code>App.tsx</code>を変更して、Profile画面をPrivate Routeで保護します．</p>
 <div class="codehilite"><pre><span></span><code><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&quot;react&quot;</span><span class="p">;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">NavBar</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;./components/NavBar&quot;</span><span class="p">;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">Router</span><span class="p">,</span> <span class="nx">Route</span><span class="p">,</span> <span class="nx">Switch</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;react-router-dom&quot;</span><span class="p">;</span>
@@ -693,11 +775,787 @@ useHistory() Hookを使わずに、createBrowserHistory()を使っているの�
 </code></pre></div>
 
 
-<p>アプリケーションを実行して、ログアウト状態でProfile画面にアクセスしようとするとリダイレクトされるか確認します。ログアウトした状態で下記のURLへアクセスします。</p>
+<p>アプリケーションを実行して、ログアウト状態でProfile画面にアクセスしようとするとリダイレクトされるか確認します．ログアウトした状態で下記のURLへアクセスします．</p>
 <p><a href="http://localhost:3000/profile">http://localhost:3000/profile</a></p>
-<p>Auth0のユニバーサルログイン画面へリダイレクトされるので、EmailとPasswordを入力します。</p>
-<p>Profile画面が表示されます。表示を確認できたら、ログアウトしておきます。</p>
+<p>Auth0のユニバーサルログイン画面へリダイレクトされるので、EmailとPasswordを入力します．</p>
+<p>Profile画面が表示されます．表示を確認できたら、ログアウトしておきます．</p>
 <p><img alt="" src="../img/app-profile.png" /></p>
+<h2 id="schemahooks">Schemaの取得と型とHooksを生成する</h2>
+<p>AppSync Schema（GraphQL Schema）から型とReact Custom Hookを生成します．</p>
+<p>一度セットアップしてしまえば、スクリプトを実行するだけでSchemaを元に何度でも再生成が可能です．</p>
+<p>AWS CLIを使ってSchemaを取得します．当然ですがAppSyncだから出来る方法です，それ以外でGraphQLを利用している場合は，エンドポイントに対してコードジェネレーターが直接Schemaをリクエストする事ができます．もちろんファイルとしてSchemaを共有しても問題はありません．</p>
+<p>AWS CLIをがインストールされていない場合は，下記のドキュメントを参考にインストールしてください．<br />
+<a href="https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/install-cliv2.html">AWS CLI バージョン 2 のインストール</a></p>
+<p>Schema用のディレクトリを作成して，Schemaをダウンロードします．</p>
+<div class="codehilite"><pre><span></span><code>mkdir -p src/graphql <span class="o">&amp;&amp;</span> <span class="se">\</span>
+aws appsync get-introspection-schema --api-id <span class="si">${</span><span class="nv">APP_SYNC_API_ID</span><span class="si">}</span> --format SDL --include-directives src/graphql/schema.graphql
+</code></pre></div>
+
+
+<p>Documents（クエリ、ミューテーション、サブスクリプションのリクエスト）が無いとReact Custom Hookの生成は行えないので、SchemaからDocumentsを生成します．パッケージ名からわかるようにAmplify関連のパッケージなのですが、マルチパッケージで開発されているのでピンポイントで欲しい部分だけ使えて助かります．</p>
+<p>生成されるDocumentsはレスポンスに全ての項目を要求する為、必要な項目だけ取得できるというGraphQLのメリットを殺してしまいます．これを嫌う場合は、手動でDocumentsを作成してください．</p>
+<div class="codehilite"><pre><span></span><code>yarn add -D amplify-graphql-docs-generator@2.1.13
+yarn amplify-graphql-docs-generator --schema src/graphql/schema.graphql --output src/graphql/all-operations.graphql --language graphql
+</code></pre></div>
+
+
+<p>SchemaとDocumentから型とReact Custom Hookを生成します．</p>
+<p>必要なツールをインストールします．</p>
+<div class="codehilite"><pre><span></span><code>yarn add <span class="se">\</span>
+  graphql@15.0.0 <span class="se">\</span>
+  @apollo/react-common@3.1.4 <span class="se">\</span>
+  @apollo/react-hooks@3.1.5
+
+yarn add -D <span class="se">\</span>
+  @graphql-codegen/cli@1.13.5 <span class="se">\</span>
+  @graphql-codegen/typescript@1.13.5 <span class="se">\</span>
+  @graphql-codegen/typescript-operations@1.13.5 <span class="se">\</span>
+  @graphql-codegen/typescript-react-apollo@1.13.5 
+</code></pre></div>
+
+
+<p>graphql-codegenの設定ファイルを作成します． この設定に基づいて型やHookが生成されます、TypeScriptのEnum使いたくないので、enumsAsTypesを有効にしてTypesに変換しています．好みに合わせて、カスタマイズしたい場合は公式ドキュメントを確認してください．</p>
+<p><a href="https://graphql-code-generator.com/docs/generated-config/typescript#enumsastypes-boolean-default-value-false">typescript | GraphQL Code Generator</a></p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># ./codegen.yml </span>
+<span class="nt">overwrite</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">schema</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="s">&#39;./src/graphql/schema.graphql&#39;</span>
+<span class="nt">documents</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="s">&#39;./src/graphql/all-operations.graphql&#39;</span>
+<span class="nt">generates</span><span class="p">:</span>
+  <span class="nt">src/graphql/generated.tsx</span><span class="p">:</span>
+    <span class="nt">plugins</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&#39;typescript&#39;</span>
+      <span class="p p-Indicator">-</span> <span class="s">&#39;typescript-operations&#39;</span>
+      <span class="p p-Indicator">-</span> <span class="s">&#39;typescript-react-apollo&#39;</span>
+    <span class="nt">config</span><span class="p">:</span>
+      <span class="nt">withComponent</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+      <span class="nt">withHooks</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+      <span class="nt">withHOC</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+      <span class="nt">enumsAsTypes</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+
+
+<p>型とReact Custom Hooksを生成します．</p>
+<div class="codehilite"><pre><span></span><code>yarn graphql-codegen --config codegen.yml
+</code></pre></div>
+
+
+<p>Schemaに変更があった場合に簡単に再生成ができるように、NPM Scriptsを書いておきます．これで yarn codegen とする事で再生成が行なえます．</p>
+<div class="codehilite"><pre><span></span><code><span class="err">//</span> <span class="err">./package.json</span>
+<span class="err">...,</span>
+<span class="s2">&quot;scripts&quot;</span><span class="err">:</span> <span class="p">{</span>
+        <span class="err">...</span>
+        <span class="nt">&quot;codegen:get-schema&quot;</span><span class="p">:</span> <span class="s2">&quot;aws appsync get-introspection-schema --api-id ${APP_SYNC_API_ID} --format SDL --include-directives src/graphql/schema.graphql&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;codegen:docsgen&quot;</span><span class="p">:</span> <span class="s2">&quot;amplify-graphql-docs-generator --schema src/graphql/schema.graphql --output src/graphql/all-operations.graphql --language graphql&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;codegen&quot;</span><span class="p">:</span> <span class="s2">&quot;yarn codegen:get-schema &amp;&amp; yarn codegen:docsgen &amp;&amp; graphql-codegen --config codegen.yml&quot;</span>
+  <span class="p">}</span><span class="err">,</span>
+<span class="err">...</span>
+</code></pre></div>
+
+
+<p>各クエリー、ミューテーション、サブスクリプションに対するApollo ClientのReact Custom Hookが生成されました．Apollo Clientはかなりインテリジェントでfetch moreやpolling処理などが実装済みです．
+この様にフロントエンドとバックエンドで型を共有し、さらにAPIアクセス部分のコードを自動生成できる事は、AppSync（GraphQL）使う非常に大きなメリットです。
+取得・生成されたファイルは付録の章で確認できます．</p>
+<h2 id="_2">付録</h2>
+<h3 id="schema">取得したSchema</h3>
+<div class="codehilite"><pre><span></span><code><span class="err">##</span><span class="w">  </span><span class="p">.</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">graphql</span><span class="o">/</span><span class="k">schema</span><span class="p">.</span><span class="n">graphql</span><span class="w"></span>
+<span class="k">schema</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="nl">query</span><span class="p">:</span><span class="w"> </span><span class="n">Query</span><span class="w"></span>
+<span class="w">  </span><span class="nl">mutation</span><span class="p">:</span><span class="w"> </span><span class="n">Mutation</span><span class="w"></span>
+<span class="w">  </span><span class="nl">subscription</span><span class="p">:</span><span class="w"> </span><span class="n">Subscription</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="n">type</span><span class="w"> </span><span class="n">Comment</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="err">#</span><span class="w">  </span><span class="n">A</span><span class="w"> </span><span class="k">unique</span><span class="w"> </span><span class="n">identifier</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">comment</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="nl">commentId</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="err">!</span><span class="w"></span>
+<span class="w">  </span><span class="err">#</span><span class="w">  </span><span class="n">The</span><span class="w"> </span><span class="n">comment</span><span class="s1">&#39;s content.</span>
+<span class="s1">  content: String!</span>
+<span class="s1">  #  The comment timestamp. This field is indexed to enable sorted pagination.</span>
+<span class="s1">  createdAt: String!</span>
+<span class="s1">  #  The id of the comment&#39;</span><span class="n">s</span><span class="w"> </span><span class="n">parent</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="nl">eventId</span><span class="p">:</span><span class="w"> </span><span class="n">ID</span><span class="err">!</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="n">type</span><span class="w"> </span><span class="n">CommentConnection</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="nl">items</span><span class="p">:</span><span class="w"> </span><span class="o">[</span><span class="n">Comment</span><span class="o">]</span><span class="w"></span>
+<span class="w">  </span><span class="nl">nextToken</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="n">type</span><span class="w"> </span><span class="n">Event</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="err">#</span><span class="w">  </span><span class="n">Paginate</span><span class="w"> </span><span class="n">through</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="n">comments</span><span class="w"> </span><span class="n">belonging</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">individual</span><span class="w"> </span><span class="n">post</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="n">comments</span><span class="p">(</span><span class="k">limit</span><span class="err">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">,</span><span class="w"> </span><span class="nl">nextToken</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="n">CommentConnection</span><span class="w"></span>
+<span class="w">  </span><span class="nl">description</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="w"></span>
+<span class="w">  </span><span class="nl">id</span><span class="p">:</span><span class="w"> </span><span class="n">ID</span><span class="err">!</span><span class="w"></span>
+<span class="w">  </span><span class="nl">name</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="w"></span>
+<span class="w">  </span><span class="k">when</span><span class="err">:</span><span class="w"> </span><span class="n">String</span><span class="w"></span>
+<span class="w">  </span><span class="k">where</span><span class="err">:</span><span class="w"> </span><span class="n">String</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="n">type</span><span class="w"> </span><span class="n">EventConnection</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="nl">items</span><span class="p">:</span><span class="w"> </span><span class="o">[</span><span class="n">Event</span><span class="o">]</span><span class="w"></span>
+<span class="w">  </span><span class="nl">nextToken</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="n">type</span><span class="w"> </span><span class="n">Mutation</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="err">#</span><span class="w">  </span><span class="n">Comment</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="n">commentOnEvent</span><span class="p">(</span><span class="nl">content</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="err">!</span><span class="p">,</span><span class="w"> </span><span class="nl">createdAt</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="err">!</span><span class="p">,</span><span class="w"> </span><span class="nl">eventId</span><span class="p">:</span><span class="w"> </span><span class="n">ID</span><span class="err">!</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="n">Comment</span><span class="w"></span>
+<span class="w">  </span><span class="err">#</span><span class="w">  </span><span class="k">Create</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">single</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="n">createEvent</span><span class="p">(</span><span class="nl">description</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="err">!</span><span class="p">,</span><span class="w"> </span><span class="nl">name</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="err">!</span><span class="p">,</span><span class="w"> </span><span class="k">when</span><span class="err">:</span><span class="w"> </span><span class="n">String</span><span class="err">!</span><span class="p">,</span><span class="w"> </span><span class="k">where</span><span class="err">:</span><span class="w"> </span><span class="n">String</span><span class="err">!</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="n">Event</span><span class="w"></span>
+<span class="w">  </span><span class="err">#</span><span class="w">  </span><span class="k">Delete</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">single</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">id</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="n">deleteEvent</span><span class="p">(</span><span class="nl">id</span><span class="p">:</span><span class="w"> </span><span class="n">ID</span><span class="err">!</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="n">Event</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="n">type</span><span class="w"> </span><span class="n">Query</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="err">#</span><span class="w">  </span><span class="k">Get</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">single</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">id</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="n">getEvent</span><span class="p">(</span><span class="nl">id</span><span class="p">:</span><span class="w"> </span><span class="n">ID</span><span class="err">!</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="n">Event</span><span class="w"></span>
+<span class="w">  </span><span class="err">#</span><span class="w">  </span><span class="n">Paginate</span><span class="w"> </span><span class="n">through</span><span class="w"> </span><span class="n">events</span><span class="p">.</span><span class="w"></span>
+<span class="w">  </span><span class="n">listEvents</span><span class="p">(</span><span class="k">filter</span><span class="err">:</span><span class="w"> </span><span class="n">TableEventFilterInput</span><span class="p">,</span><span class="w"> </span><span class="k">limit</span><span class="err">:</span><span class="w"> </span><span class="nc">Int</span><span class="p">,</span><span class="w"> </span><span class="nl">nextToken</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="n">EventConnection</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="n">type</span><span class="w"> </span><span class="n">Subscription</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">subscribeToEventComments</span><span class="p">(</span><span class="nl">eventId</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="err">!</span><span class="p">)</span><span class="err">:</span><span class="w"> </span><span class="n">Comment</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="k">input</span><span class="w"> </span><span class="n">TableBooleanFilterInput</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="nl">eq</span><span class="p">:</span><span class="w"> </span><span class="k">Boolean</span><span class="w"></span>
+<span class="w">  </span><span class="nl">ne</span><span class="p">:</span><span class="w"> </span><span class="k">Boolean</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="k">input</span><span class="w"> </span><span class="n">TableEventFilterInput</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="nl">description</span><span class="p">:</span><span class="w"> </span><span class="n">TableStringFilterInput</span><span class="w"></span>
+<span class="w">  </span><span class="nl">id</span><span class="p">:</span><span class="w"> </span><span class="n">TableIDFilterInput</span><span class="w"></span>
+<span class="w">  </span><span class="nl">name</span><span class="p">:</span><span class="w"> </span><span class="n">TableStringFilterInput</span><span class="w"></span>
+<span class="w">  </span><span class="k">when</span><span class="err">:</span><span class="w"> </span><span class="n">TableStringFilterInput</span><span class="w"></span>
+<span class="w">  </span><span class="k">where</span><span class="err">:</span><span class="w"> </span><span class="n">TableStringFilterInput</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="k">input</span><span class="w"> </span><span class="n">TableFloatFilterInput</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="ow">between</span><span class="err">:</span><span class="w"> </span><span class="o">[</span><span class="n">Float</span><span class="o">]</span><span class="w"></span>
+<span class="w">  </span><span class="k">contains</span><span class="err">:</span><span class="w"> </span><span class="nc">Float</span><span class="w"></span>
+<span class="w">  </span><span class="nl">eq</span><span class="p">:</span><span class="w"> </span><span class="nc">Float</span><span class="w"></span>
+<span class="w">  </span><span class="nl">ge</span><span class="p">:</span><span class="w"> </span><span class="nc">Float</span><span class="w"></span>
+<span class="w">  </span><span class="nl">gt</span><span class="p">:</span><span class="w"> </span><span class="nc">Float</span><span class="w"></span>
+<span class="w">  </span><span class="nl">le</span><span class="p">:</span><span class="w"> </span><span class="nc">Float</span><span class="w"></span>
+<span class="w">  </span><span class="nl">lt</span><span class="p">:</span><span class="w"> </span><span class="nc">Float</span><span class="w"></span>
+<span class="w">  </span><span class="nl">ne</span><span class="p">:</span><span class="w"> </span><span class="nc">Float</span><span class="w"></span>
+<span class="w">  </span><span class="nl">notContains</span><span class="p">:</span><span class="w"> </span><span class="nc">Float</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="k">input</span><span class="w"> </span><span class="n">TableIDFilterInput</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="nl">beginsWith</span><span class="p">:</span><span class="w"> </span><span class="n">ID</span><span class="w"></span>
+<span class="w">  </span><span class="ow">between</span><span class="err">:</span><span class="w"> </span><span class="o">[</span><span class="n">ID</span><span class="o">]</span><span class="w"></span>
+<span class="w">  </span><span class="k">contains</span><span class="err">:</span><span class="w"> </span><span class="n">ID</span><span class="w"></span>
+<span class="w">  </span><span class="nl">eq</span><span class="p">:</span><span class="w"> </span><span class="n">ID</span><span class="w"></span>
+<span class="w">  </span><span class="nl">ge</span><span class="p">:</span><span class="w"> </span><span class="n">ID</span><span class="w"></span>
+<span class="w">  </span><span class="nl">gt</span><span class="p">:</span><span class="w"> </span><span class="n">ID</span><span class="w"></span>
+<span class="w">  </span><span class="nl">le</span><span class="p">:</span><span class="w"> </span><span class="n">ID</span><span class="w"></span>
+<span class="w">  </span><span class="nl">lt</span><span class="p">:</span><span class="w"> </span><span class="n">ID</span><span class="w"></span>
+<span class="w">  </span><span class="nl">ne</span><span class="p">:</span><span class="w"> </span><span class="n">ID</span><span class="w"></span>
+<span class="w">  </span><span class="nl">notContains</span><span class="p">:</span><span class="w"> </span><span class="n">ID</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="k">input</span><span class="w"> </span><span class="n">TableIntFilterInput</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="ow">between</span><span class="err">:</span><span class="w"> </span><span class="o">[</span><span class="n">Int</span><span class="o">]</span><span class="w"></span>
+<span class="w">  </span><span class="k">contains</span><span class="err">:</span><span class="w"> </span><span class="nc">Int</span><span class="w"></span>
+<span class="w">  </span><span class="nl">eq</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="w"></span>
+<span class="w">  </span><span class="nl">ge</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="w"></span>
+<span class="w">  </span><span class="nl">gt</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="w"></span>
+<span class="w">  </span><span class="nl">le</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="w"></span>
+<span class="w">  </span><span class="nl">lt</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="w"></span>
+<span class="w">  </span><span class="nl">ne</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="w"></span>
+<span class="w">  </span><span class="nl">notContains</span><span class="p">:</span><span class="w"> </span><span class="nc">Int</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+
+<span class="k">input</span><span class="w"> </span><span class="n">TableStringFilterInput</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
+<span class="w">  </span><span class="nl">beginsWith</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="w"></span>
+<span class="w">  </span><span class="ow">between</span><span class="err">:</span><span class="w"> </span><span class="o">[</span><span class="n">String</span><span class="o">]</span><span class="w"></span>
+<span class="w">  </span><span class="k">contains</span><span class="err">:</span><span class="w"> </span><span class="n">String</span><span class="w"></span>
+<span class="w">  </span><span class="nl">eq</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="w"></span>
+<span class="w">  </span><span class="nl">ge</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="w"></span>
+<span class="w">  </span><span class="nl">gt</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="w"></span>
+<span class="w">  </span><span class="nl">le</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="w"></span>
+<span class="w">  </span><span class="nl">lt</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="w"></span>
+<span class="w">  </span><span class="nl">ne</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="w"></span>
+<span class="w">  </span><span class="nl">notContains</span><span class="p">:</span><span class="w"> </span><span class="n">String</span><span class="w"></span>
+<span class="err">}</span><span class="w"></span>
+</code></pre></div>
+
+
+<h3 id="documents">生成されたDocuments</h3>
+<div class="codehilite"><pre><span></span><code><span class="err"># ./src/graphql/all-operation.graphql</span>
+<span class="err"># this is an auto generated file. This will be overwritten</span>
+<span class="err">query GetEvent($id: ID!) {</span>
+<span class="err">  getEvent(id: $id) {</span>
+<span class="err">    comments {</span>
+<span class="err">      nextToken</span>
+<span class="err">    }</span>
+<span class="err">    description</span>
+<span class="err">    id</span>
+<span class="err">    name</span>
+<span class="err">    when</span>
+<span class="err">    where</span>
+<span class="err">  }</span>
+<span class="err">}</span>
+<span class="err">query ListEvents(</span>
+<span class="err">  $filter: TableEventFilterInput</span>
+<span class="err">  $limit: Int</span>
+<span class="err">  $nextToken: String</span>
+<span class="err">) {</span>
+<span class="err">  listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {</span>
+<span class="err">    items {</span>
+<span class="err">      description</span>
+<span class="err">      id</span>
+<span class="err">      name</span>
+<span class="err">      when</span>
+<span class="err">      where</span>
+<span class="err">    }</span>
+<span class="err">    nextToken</span>
+<span class="err">  }</span>
+<span class="err">}</span>
+<span class="err">mutation CommentOnEvent($content: String!, $createdAt: String!, $eventId: ID!) {</span>
+<span class="err">  commentOnEvent(content: $content, createdAt: $createdAt, eventId: $eventId) {</span>
+<span class="err">    commentId</span>
+<span class="err">    content</span>
+<span class="err">    createdAt</span>
+<span class="err">    eventId</span>
+<span class="err">  }</span>
+<span class="err">}</span>
+<span class="err">mutation CreateEvent(</span>
+<span class="err">  $description: String!</span>
+<span class="err">  $name: String!</span>
+<span class="err">  $when: String!</span>
+<span class="err">  $where: String!</span>
+<span class="err">) {</span>
+<span class="err">  createEvent(</span>
+<span class="err">    description: $description</span>
+<span class="err">    name: $name</span>
+<span class="err">    when: $when</span>
+<span class="err">    where: $where</span>
+<span class="err">  ) {</span>
+<span class="err">    comments {</span>
+<span class="err">      nextToken</span>
+<span class="err">    }</span>
+<span class="err">    description</span>
+<span class="err">    id</span>
+<span class="err">    name</span>
+<span class="err">    when</span>
+<span class="err">    where</span>
+<span class="err">  }</span>
+<span class="err">}</span>
+<span class="err">mutation DeleteEvent($id: ID!) {</span>
+<span class="err">  deleteEvent(id: $id) {</span>
+<span class="err">    comments {</span>
+<span class="err">      nextToken</span>
+<span class="err">    }</span>
+<span class="err">    description</span>
+<span class="err">    id</span>
+<span class="err">    name</span>
+<span class="err">    when</span>
+<span class="err">    where</span>
+<span class="err">  }</span>
+<span class="err">}</span>
+<span class="err">subscription SubscribeToEventComments($eventId: String!) {</span>
+<span class="err">  subscribeToEventComments(eventId: $eventId) {</span>
+<span class="err">    commentId</span>
+<span class="err">    content</span>
+<span class="err">    createdAt</span>
+<span class="err">    eventId</span>
+<span class="err">  }</span>
+<span class="err">}</span>
+</code></pre></div>
+
+
+<h3 id="react-custom-hook">生成された型とReact Custom Hook</h3>
+<div class="codehilite"><pre><span></span><code><span class="o">//</span> <span class="o">./</span><span class="n">src</span><span class="o">/</span><span class="n">graphql</span><span class="o">/</span><span class="n">generated</span><span class="o">.</span><span class="n">tsx</span>
+<span class="kn">import</span> <span class="nn">gql</span> <span class="nn">from</span> <span class="s1">&#39;graphql-tag&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="o">*</span> <span class="k">as</span> <span class="n">ApolloReactCommon</span> <span class="kn">from</span> <span class="s1">&#39;@apollo/react-common&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="o">*</span> <span class="k">as</span> <span class="n">ApolloReactHooks</span> <span class="kn">from</span> <span class="s1">&#39;@apollo/react-hooks&#39;</span><span class="p">;</span>
+<span class="n">export</span> <span class="nb">type</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">T</span> <span class="o">|</span> <span class="n">null</span><span class="p">;</span>
+<span class="o">/**</span> <span class="n">All</span> <span class="n">built</span><span class="o">-</span><span class="ow">in</span> <span class="ow">and</span> <span class="n">custom</span> <span class="n">scalars</span><span class="p">,</span> <span class="n">mapped</span> <span class="n">to</span> <span class="n">their</span> <span class="n">actual</span> <span class="n">values</span> <span class="o">*/</span>
+<span class="n">export</span> <span class="nb">type</span> <span class="n">Scalars</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">ID</span><span class="p">:</span> <span class="n">string</span><span class="p">;</span>
+  <span class="n">String</span><span class="p">:</span> <span class="n">string</span><span class="p">;</span>
+  <span class="n">Boolean</span><span class="p">:</span> <span class="n">boolean</span><span class="p">;</span>
+  <span class="n">Int</span><span class="p">:</span> <span class="n">number</span><span class="p">;</span>
+  <span class="n">Float</span><span class="p">:</span> <span class="n">number</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">Comment</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="n">__typename</span><span class="err">?</span><span class="p">:</span> <span class="s1">&#39;Comment&#39;</span><span class="p">;</span>
+  <span class="n">commentId</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">];</span>
+  <span class="n">content</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">];</span>
+  <span class="n">createdAt</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">];</span>
+  <span class="n">eventId</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">CommentConnection</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="n">__typename</span><span class="err">?</span><span class="p">:</span> <span class="s1">&#39;CommentConnection&#39;</span><span class="p">;</span>
+  <span class="n">items</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Array</span><span class="o">&lt;</span><span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Comment</span><span class="o">&gt;&gt;&gt;</span><span class="p">;</span>
+  <span class="n">nextToken</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">Event</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="n">__typename</span><span class="err">?</span><span class="p">:</span> <span class="s1">&#39;Event&#39;</span><span class="p">;</span>
+  <span class="n">comments</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">CommentConnection</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">description</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="nb">id</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">];</span>
+  <span class="n">name</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">when</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">where</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">EventCommentsArgs</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">limit</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;Int&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">nextToken</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">EventConnection</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="n">__typename</span><span class="err">?</span><span class="p">:</span> <span class="s1">&#39;EventConnection&#39;</span><span class="p">;</span>
+  <span class="n">items</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Array</span><span class="o">&lt;</span><span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Event</span><span class="o">&gt;&gt;&gt;</span><span class="p">;</span>
+  <span class="n">nextToken</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">Mutation</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="n">__typename</span><span class="err">?</span><span class="p">:</span> <span class="s1">&#39;Mutation&#39;</span><span class="p">;</span>
+  <span class="n">commentOnEvent</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Comment</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">createEvent</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Event</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">deleteEvent</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Event</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">MutationCommentOnEventArgs</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">content</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">];</span>
+  <span class="n">createdAt</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">];</span>
+  <span class="n">eventId</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">MutationCreateEventArgs</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">description</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">];</span>
+  <span class="n">name</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">];</span>
+  <span class="n">when</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">];</span>
+  <span class="n">where</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">MutationDeleteEventArgs</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nb">id</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">Query</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="n">__typename</span><span class="err">?</span><span class="p">:</span> <span class="s1">&#39;Query&#39;</span><span class="p">;</span>
+  <span class="n">getEvent</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Event</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">listEvents</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">EventConnection</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">QueryGetEventArgs</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nb">id</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">QueryListEventsArgs</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nb">filter</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">TableEventFilterInput</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">limit</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;Int&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">nextToken</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">Subscription</span> <span class="o">=</span> <span class="p">{</span>
+   <span class="n">__typename</span><span class="err">?</span><span class="p">:</span> <span class="s1">&#39;Subscription&#39;</span><span class="p">;</span>
+  <span class="n">subscribeToEventComments</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Comment</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">SubscriptionSubscribeToEventCommentsArgs</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">eventId</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">TableBooleanFilterInput</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">eq</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;Boolean&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">ne</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;Boolean&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">TableEventFilterInput</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">description</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">TableStringFilterInput</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="nb">id</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">TableIdFilterInput</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">name</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">TableStringFilterInput</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">when</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">TableStringFilterInput</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">where</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">TableStringFilterInput</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">TableFloatFilterInput</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">between</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Array</span><span class="o">&lt;</span><span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;Float&#39;</span><span class="p">]</span><span class="o">&gt;&gt;&gt;</span><span class="p">;</span>
+  <span class="n">contains</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;Float&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">eq</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;Float&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">ge</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;Float&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">gt</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;Float&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">le</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;Float&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">lt</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;Float&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">ne</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;Float&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">notContains</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;Float&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">TableIdFilterInput</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">beginsWith</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">between</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Array</span><span class="o">&lt;</span><span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]</span><span class="o">&gt;&gt;&gt;</span><span class="p">;</span>
+  <span class="n">contains</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">eq</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">ge</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">gt</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">le</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">lt</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">ne</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">notContains</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">TableIntFilterInput</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">between</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Array</span><span class="o">&lt;</span><span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;Int&#39;</span><span class="p">]</span><span class="o">&gt;&gt;&gt;</span><span class="p">;</span>
+  <span class="n">contains</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;Int&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">eq</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;Int&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">ge</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;Int&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">gt</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;Int&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">le</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;Int&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">lt</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;Int&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">ne</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;Int&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">notContains</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;Int&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">TableStringFilterInput</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">beginsWith</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">between</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Array</span><span class="o">&lt;</span><span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">]</span><span class="o">&gt;&gt;&gt;</span><span class="p">;</span>
+  <span class="n">contains</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">eq</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">ge</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">gt</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">le</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">lt</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">ne</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">notContains</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">GetEventQueryVariables</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nb">id</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">GetEventQuery</span> <span class="o">=</span> <span class="p">(</span>
+  <span class="p">{</span> <span class="n">__typename</span><span class="err">?</span><span class="p">:</span> <span class="s1">&#39;Query&#39;</span> <span class="p">}</span>
+  <span class="o">&amp;</span> <span class="p">{</span> <span class="n">getEvent</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="p">(</span>
+    <span class="p">{</span> <span class="n">__typename</span><span class="err">?</span><span class="p">:</span> <span class="s1">&#39;Event&#39;</span> <span class="p">}</span>
+    <span class="o">&amp;</span> <span class="n">Pick</span><span class="o">&lt;</span><span class="n">Event</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span> <span class="o">|</span> <span class="s1">&#39;id&#39;</span> <span class="o">|</span> <span class="s1">&#39;name&#39;</span> <span class="o">|</span> <span class="s1">&#39;when&#39;</span> <span class="o">|</span> <span class="s1">&#39;where&#39;</span><span class="o">&gt;</span>
+    <span class="o">&amp;</span> <span class="p">{</span> <span class="n">comments</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="p">(</span>
+      <span class="p">{</span> <span class="n">__typename</span><span class="err">?</span><span class="p">:</span> <span class="s1">&#39;CommentConnection&#39;</span> <span class="p">}</span>
+      <span class="o">&amp;</span> <span class="n">Pick</span><span class="o">&lt;</span><span class="n">CommentConnection</span><span class="p">,</span> <span class="s1">&#39;nextToken&#39;</span><span class="o">&gt;</span>
+    <span class="p">)</span><span class="o">&gt;</span> <span class="p">}</span>
+  <span class="p">)</span><span class="o">&gt;</span> <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">ListEventsQueryVariables</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nb">filter</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">TableEventFilterInput</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">limit</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;Int&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+  <span class="n">nextToken</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">ListEventsQuery</span> <span class="o">=</span> <span class="p">(</span>
+  <span class="p">{</span> <span class="n">__typename</span><span class="err">?</span><span class="p">:</span> <span class="s1">&#39;Query&#39;</span> <span class="p">}</span>
+  <span class="o">&amp;</span> <span class="p">{</span> <span class="n">listEvents</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="p">(</span>
+    <span class="p">{</span> <span class="n">__typename</span><span class="err">?</span><span class="p">:</span> <span class="s1">&#39;EventConnection&#39;</span> <span class="p">}</span>
+    <span class="o">&amp;</span> <span class="n">Pick</span><span class="o">&lt;</span><span class="n">EventConnection</span><span class="p">,</span> <span class="s1">&#39;nextToken&#39;</span><span class="o">&gt;</span>
+    <span class="o">&amp;</span> <span class="p">{</span> <span class="n">items</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="n">Array</span><span class="o">&lt;</span><span class="n">Maybe</span><span class="o">&lt;</span><span class="p">(</span>
+      <span class="p">{</span> <span class="n">__typename</span><span class="err">?</span><span class="p">:</span> <span class="s1">&#39;Event&#39;</span> <span class="p">}</span>
+      <span class="o">&amp;</span> <span class="n">Pick</span><span class="o">&lt;</span><span class="n">Event</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span> <span class="o">|</span> <span class="s1">&#39;id&#39;</span> <span class="o">|</span> <span class="s1">&#39;name&#39;</span> <span class="o">|</span> <span class="s1">&#39;when&#39;</span> <span class="o">|</span> <span class="s1">&#39;where&#39;</span><span class="o">&gt;</span>
+    <span class="p">)</span><span class="o">&gt;&gt;&gt;</span> <span class="p">}</span>
+  <span class="p">)</span><span class="o">&gt;</span> <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">CommentOnEventMutationVariables</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">content</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">];</span>
+  <span class="n">createdAt</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">];</span>
+  <span class="n">eventId</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">CommentOnEventMutation</span> <span class="o">=</span> <span class="p">(</span>
+  <span class="p">{</span> <span class="n">__typename</span><span class="err">?</span><span class="p">:</span> <span class="s1">&#39;Mutation&#39;</span> <span class="p">}</span>
+  <span class="o">&amp;</span> <span class="p">{</span> <span class="n">commentOnEvent</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="p">(</span>
+    <span class="p">{</span> <span class="n">__typename</span><span class="err">?</span><span class="p">:</span> <span class="s1">&#39;Comment&#39;</span> <span class="p">}</span>
+    <span class="o">&amp;</span> <span class="n">Pick</span><span class="o">&lt;</span><span class="n">Comment</span><span class="p">,</span> <span class="s1">&#39;commentId&#39;</span> <span class="o">|</span> <span class="s1">&#39;content&#39;</span> <span class="o">|</span> <span class="s1">&#39;createdAt&#39;</span> <span class="o">|</span> <span class="s1">&#39;eventId&#39;</span><span class="o">&gt;</span>
+  <span class="p">)</span><span class="o">&gt;</span> <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">CreateEventMutationVariables</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">description</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">];</span>
+  <span class="n">name</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">];</span>
+  <span class="n">when</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">];</span>
+  <span class="n">where</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">CreateEventMutation</span> <span class="o">=</span> <span class="p">(</span>
+  <span class="p">{</span> <span class="n">__typename</span><span class="err">?</span><span class="p">:</span> <span class="s1">&#39;Mutation&#39;</span> <span class="p">}</span>
+  <span class="o">&amp;</span> <span class="p">{</span> <span class="n">createEvent</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="p">(</span>
+    <span class="p">{</span> <span class="n">__typename</span><span class="err">?</span><span class="p">:</span> <span class="s1">&#39;Event&#39;</span> <span class="p">}</span>
+    <span class="o">&amp;</span> <span class="n">Pick</span><span class="o">&lt;</span><span class="n">Event</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span> <span class="o">|</span> <span class="s1">&#39;id&#39;</span> <span class="o">|</span> <span class="s1">&#39;name&#39;</span> <span class="o">|</span> <span class="s1">&#39;when&#39;</span> <span class="o">|</span> <span class="s1">&#39;where&#39;</span><span class="o">&gt;</span>
+    <span class="o">&amp;</span> <span class="p">{</span> <span class="n">comments</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="p">(</span>
+      <span class="p">{</span> <span class="n">__typename</span><span class="err">?</span><span class="p">:</span> <span class="s1">&#39;CommentConnection&#39;</span> <span class="p">}</span>
+      <span class="o">&amp;</span> <span class="n">Pick</span><span class="o">&lt;</span><span class="n">CommentConnection</span><span class="p">,</span> <span class="s1">&#39;nextToken&#39;</span><span class="o">&gt;</span>
+    <span class="p">)</span><span class="o">&gt;</span> <span class="p">}</span>
+  <span class="p">)</span><span class="o">&gt;</span> <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">DeleteEventMutationVariables</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nb">id</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;ID&#39;</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">DeleteEventMutation</span> <span class="o">=</span> <span class="p">(</span>
+  <span class="p">{</span> <span class="n">__typename</span><span class="err">?</span><span class="p">:</span> <span class="s1">&#39;Mutation&#39;</span> <span class="p">}</span>
+  <span class="o">&amp;</span> <span class="p">{</span> <span class="n">deleteEvent</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="p">(</span>
+    <span class="p">{</span> <span class="n">__typename</span><span class="err">?</span><span class="p">:</span> <span class="s1">&#39;Event&#39;</span> <span class="p">}</span>
+    <span class="o">&amp;</span> <span class="n">Pick</span><span class="o">&lt;</span><span class="n">Event</span><span class="p">,</span> <span class="s1">&#39;description&#39;</span> <span class="o">|</span> <span class="s1">&#39;id&#39;</span> <span class="o">|</span> <span class="s1">&#39;name&#39;</span> <span class="o">|</span> <span class="s1">&#39;when&#39;</span> <span class="o">|</span> <span class="s1">&#39;where&#39;</span><span class="o">&gt;</span>
+    <span class="o">&amp;</span> <span class="p">{</span> <span class="n">comments</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="p">(</span>
+      <span class="p">{</span> <span class="n">__typename</span><span class="err">?</span><span class="p">:</span> <span class="s1">&#39;CommentConnection&#39;</span> <span class="p">}</span>
+      <span class="o">&amp;</span> <span class="n">Pick</span><span class="o">&lt;</span><span class="n">CommentConnection</span><span class="p">,</span> <span class="s1">&#39;nextToken&#39;</span><span class="o">&gt;</span>
+    <span class="p">)</span><span class="o">&gt;</span> <span class="p">}</span>
+  <span class="p">)</span><span class="o">&gt;</span> <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">SubscribeToEventCommentsSubscriptionVariables</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">eventId</span><span class="p">:</span> <span class="n">Scalars</span><span class="p">[</span><span class="s1">&#39;String&#39;</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="nb">type</span> <span class="n">SubscribeToEventCommentsSubscription</span> <span class="o">=</span> <span class="p">(</span>
+  <span class="p">{</span> <span class="n">__typename</span><span class="err">?</span><span class="p">:</span> <span class="s1">&#39;Subscription&#39;</span> <span class="p">}</span>
+  <span class="o">&amp;</span> <span class="p">{</span> <span class="n">subscribeToEventComments</span><span class="err">?</span><span class="p">:</span> <span class="n">Maybe</span><span class="o">&lt;</span><span class="p">(</span>
+    <span class="p">{</span> <span class="n">__typename</span><span class="err">?</span><span class="p">:</span> <span class="s1">&#39;Comment&#39;</span> <span class="p">}</span>
+    <span class="o">&amp;</span> <span class="n">Pick</span><span class="o">&lt;</span><span class="n">Comment</span><span class="p">,</span> <span class="s1">&#39;commentId&#39;</span> <span class="o">|</span> <span class="s1">&#39;content&#39;</span> <span class="o">|</span> <span class="s1">&#39;createdAt&#39;</span> <span class="o">|</span> <span class="s1">&#39;eventId&#39;</span><span class="o">&gt;</span>
+  <span class="p">)</span><span class="o">&gt;</span> <span class="p">}</span>
+<span class="p">);</span>
+
+<span class="n">export</span> <span class="n">const</span> <span class="n">GetEventDocument</span> <span class="o">=</span> <span class="n">gql</span><span class="err">`</span>
+    <span class="n">query</span> <span class="n">GetEvent</span><span class="p">(</span><span class="err">$</span><span class="nb">id</span><span class="p">:</span> <span class="n">ID</span><span class="err">!</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">getEvent</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="err">$</span><span class="nb">id</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">comments</span> <span class="p">{</span>
+      <span class="n">nextToken</span>
+    <span class="p">}</span>
+    <span class="n">description</span>
+    <span class="nb">id</span>
+    <span class="n">name</span>
+    <span class="n">when</span>
+    <span class="n">where</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+    <span class="err">`</span><span class="p">;</span>
+
+<span class="o">/**</span>
+ <span class="o">*</span> <span class="n">__useGetEventQuery__</span>
+ <span class="o">*</span>
+ <span class="o">*</span> <span class="n">To</span> <span class="n">run</span> <span class="n">a</span> <span class="n">query</span> <span class="n">within</span> <span class="n">a</span> <span class="n">React</span> <span class="n">component</span><span class="p">,</span> <span class="n">call</span> <span class="sb">`useGetEventQuery`</span> <span class="ow">and</span> <span class="k">pass</span> <span class="n">it</span> <span class="nb">any</span> <span class="n">options</span> <span class="n">that</span> <span class="n">fit</span> <span class="n">your</span> <span class="n">needs</span><span class="o">.</span>
+ <span class="o">*</span> <span class="n">When</span> <span class="n">your</span> <span class="n">component</span> <span class="n">renders</span><span class="p">,</span> <span class="sb">`useGetEventQuery`</span> <span class="n">returns</span> <span class="n">an</span> <span class="nb">object</span> <span class="kn">from</span> <span class="nn">Apollo</span> <span class="nn">Client</span> <span class="nn">that</span> <span class="nn">contains</span> <span class="nn">loading</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="ow">and</span> <span class="n">data</span> <span class="n">properties</span>
+ <span class="o">*</span> <span class="n">you</span> <span class="n">can</span> <span class="n">use</span> <span class="n">to</span> <span class="n">render</span> <span class="n">your</span> <span class="n">UI</span><span class="o">.</span>
+ <span class="o">*</span>
+ <span class="o">*</span> <span class="nd">@param</span> <span class="n">baseOptions</span> <span class="n">options</span> <span class="n">that</span> <span class="n">will</span> <span class="n">be</span> <span class="n">passed</span> <span class="n">into</span> <span class="n">the</span> <span class="n">query</span><span class="p">,</span> <span class="n">supported</span> <span class="n">options</span> <span class="n">are</span> <span class="n">listed</span> <span class="n">on</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">apollographql</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">react</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">react</span><span class="o">-</span><span class="n">hooks</span><span class="o">/</span><span class="c1">#options;</span>
+ <span class="o">*</span>
+ <span class="o">*</span> <span class="nd">@example</span>
+ <span class="o">*</span> <span class="n">const</span> <span class="p">{</span> <span class="n">data</span><span class="p">,</span> <span class="n">loading</span><span class="p">,</span> <span class="n">error</span> <span class="p">}</span> <span class="o">=</span> <span class="n">useGetEventQuery</span><span class="p">({</span>
+ <span class="o">*</span>   <span class="n">variables</span><span class="p">:</span> <span class="p">{</span>
+ <span class="o">*</span>      <span class="nb">id</span><span class="p">:</span> <span class="o">//</span> <span class="n">value</span> <span class="k">for</span> <span class="s1">&#39;id&#39;</span>
+ <span class="o">*</span>   <span class="p">},</span>
+ <span class="o">*</span> <span class="p">});</span>
+ <span class="o">*/</span>
+<span class="n">export</span> <span class="n">function</span> <span class="n">useGetEventQuery</span><span class="p">(</span><span class="n">baseOptions</span><span class="err">?</span><span class="p">:</span> <span class="n">ApolloReactHooks</span><span class="o">.</span><span class="n">QueryHookOptions</span><span class="o">&lt;</span><span class="n">GetEventQuery</span><span class="p">,</span> <span class="n">GetEventQueryVariables</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">ApolloReactHooks</span><span class="o">.</span><span class="n">useQuery</span><span class="o">&lt;</span><span class="n">GetEventQuery</span><span class="p">,</span> <span class="n">GetEventQueryVariables</span><span class="o">&gt;</span><span class="p">(</span><span class="n">GetEventDocument</span><span class="p">,</span> <span class="n">baseOptions</span><span class="p">);</span>
+      <span class="p">}</span>
+<span class="n">export</span> <span class="n">function</span> <span class="n">useGetEventLazyQuery</span><span class="p">(</span><span class="n">baseOptions</span><span class="err">?</span><span class="p">:</span> <span class="n">ApolloReactHooks</span><span class="o">.</span><span class="n">LazyQueryHookOptions</span><span class="o">&lt;</span><span class="n">GetEventQuery</span><span class="p">,</span> <span class="n">GetEventQueryVariables</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="n">ApolloReactHooks</span><span class="o">.</span><span class="n">useLazyQuery</span><span class="o">&lt;</span><span class="n">GetEventQuery</span><span class="p">,</span> <span class="n">GetEventQueryVariables</span><span class="o">&gt;</span><span class="p">(</span><span class="n">GetEventDocument</span><span class="p">,</span> <span class="n">baseOptions</span><span class="p">);</span>
+        <span class="p">}</span>
+<span class="n">export</span> <span class="nb">type</span> <span class="n">GetEventQueryHookResult</span> <span class="o">=</span> <span class="n">ReturnType</span><span class="o">&lt;</span><span class="n">typeof</span> <span class="n">useGetEventQuery</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="n">export</span> <span class="nb">type</span> <span class="n">GetEventLazyQueryHookResult</span> <span class="o">=</span> <span class="n">ReturnType</span><span class="o">&lt;</span><span class="n">typeof</span> <span class="n">useGetEventLazyQuery</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="n">export</span> <span class="nb">type</span> <span class="n">GetEventQueryResult</span> <span class="o">=</span> <span class="n">ApolloReactCommon</span><span class="o">.</span><span class="n">QueryResult</span><span class="o">&lt;</span><span class="n">GetEventQuery</span><span class="p">,</span> <span class="n">GetEventQueryVariables</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="n">export</span> <span class="n">const</span> <span class="n">ListEventsDocument</span> <span class="o">=</span> <span class="n">gql</span><span class="err">`</span>
+    <span class="n">query</span> <span class="n">ListEvents</span><span class="p">(</span><span class="err">$</span><span class="nb">filter</span><span class="p">:</span> <span class="n">TableEventFilterInput</span><span class="p">,</span> <span class="err">$</span><span class="n">limit</span><span class="p">:</span> <span class="n">Int</span><span class="p">,</span> <span class="err">$</span><span class="n">nextToken</span><span class="p">:</span> <span class="n">String</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">listEvents</span><span class="p">(</span><span class="nb">filter</span><span class="p">:</span> <span class="err">$</span><span class="nb">filter</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="err">$</span><span class="n">limit</span><span class="p">,</span> <span class="n">nextToken</span><span class="p">:</span> <span class="err">$</span><span class="n">nextToken</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">items</span> <span class="p">{</span>
+      <span class="n">description</span>
+      <span class="nb">id</span>
+      <span class="n">name</span>
+      <span class="n">when</span>
+      <span class="n">where</span>
+    <span class="p">}</span>
+    <span class="n">nextToken</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+    <span class="err">`</span><span class="p">;</span>
+
+<span class="o">/**</span>
+ <span class="o">*</span> <span class="n">__useListEventsQuery__</span>
+ <span class="o">*</span>
+ <span class="o">*</span> <span class="n">To</span> <span class="n">run</span> <span class="n">a</span> <span class="n">query</span> <span class="n">within</span> <span class="n">a</span> <span class="n">React</span> <span class="n">component</span><span class="p">,</span> <span class="n">call</span> <span class="sb">`useListEventsQuery`</span> <span class="ow">and</span> <span class="k">pass</span> <span class="n">it</span> <span class="nb">any</span> <span class="n">options</span> <span class="n">that</span> <span class="n">fit</span> <span class="n">your</span> <span class="n">needs</span><span class="o">.</span>
+ <span class="o">*</span> <span class="n">When</span> <span class="n">your</span> <span class="n">component</span> <span class="n">renders</span><span class="p">,</span> <span class="sb">`useListEventsQuery`</span> <span class="n">returns</span> <span class="n">an</span> <span class="nb">object</span> <span class="kn">from</span> <span class="nn">Apollo</span> <span class="nn">Client</span> <span class="nn">that</span> <span class="nn">contains</span> <span class="nn">loading</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="ow">and</span> <span class="n">data</span> <span class="n">properties</span>
+ <span class="o">*</span> <span class="n">you</span> <span class="n">can</span> <span class="n">use</span> <span class="n">to</span> <span class="n">render</span> <span class="n">your</span> <span class="n">UI</span><span class="o">.</span>
+ <span class="o">*</span>
+ <span class="o">*</span> <span class="nd">@param</span> <span class="n">baseOptions</span> <span class="n">options</span> <span class="n">that</span> <span class="n">will</span> <span class="n">be</span> <span class="n">passed</span> <span class="n">into</span> <span class="n">the</span> <span class="n">query</span><span class="p">,</span> <span class="n">supported</span> <span class="n">options</span> <span class="n">are</span> <span class="n">listed</span> <span class="n">on</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">apollographql</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">react</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">react</span><span class="o">-</span><span class="n">hooks</span><span class="o">/</span><span class="c1">#options;</span>
+ <span class="o">*</span>
+ <span class="o">*</span> <span class="nd">@example</span>
+ <span class="o">*</span> <span class="n">const</span> <span class="p">{</span> <span class="n">data</span><span class="p">,</span> <span class="n">loading</span><span class="p">,</span> <span class="n">error</span> <span class="p">}</span> <span class="o">=</span> <span class="n">useListEventsQuery</span><span class="p">({</span>
+ <span class="o">*</span>   <span class="n">variables</span><span class="p">:</span> <span class="p">{</span>
+ <span class="o">*</span>      <span class="nb">filter</span><span class="p">:</span> <span class="o">//</span> <span class="n">value</span> <span class="k">for</span> <span class="s1">&#39;filter&#39;</span>
+ <span class="o">*</span>      <span class="n">limit</span><span class="p">:</span> <span class="o">//</span> <span class="n">value</span> <span class="k">for</span> <span class="s1">&#39;limit&#39;</span>
+ <span class="o">*</span>      <span class="n">nextToken</span><span class="p">:</span> <span class="o">//</span> <span class="n">value</span> <span class="k">for</span> <span class="s1">&#39;nextToken&#39;</span>
+ <span class="o">*</span>   <span class="p">},</span>
+ <span class="o">*</span> <span class="p">});</span>
+ <span class="o">*/</span>
+<span class="n">export</span> <span class="n">function</span> <span class="n">useListEventsQuery</span><span class="p">(</span><span class="n">baseOptions</span><span class="err">?</span><span class="p">:</span> <span class="n">ApolloReactHooks</span><span class="o">.</span><span class="n">QueryHookOptions</span><span class="o">&lt;</span><span class="n">ListEventsQuery</span><span class="p">,</span> <span class="n">ListEventsQueryVariables</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">ApolloReactHooks</span><span class="o">.</span><span class="n">useQuery</span><span class="o">&lt;</span><span class="n">ListEventsQuery</span><span class="p">,</span> <span class="n">ListEventsQueryVariables</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ListEventsDocument</span><span class="p">,</span> <span class="n">baseOptions</span><span class="p">);</span>
+      <span class="p">}</span>
+<span class="n">export</span> <span class="n">function</span> <span class="n">useListEventsLazyQuery</span><span class="p">(</span><span class="n">baseOptions</span><span class="err">?</span><span class="p">:</span> <span class="n">ApolloReactHooks</span><span class="o">.</span><span class="n">LazyQueryHookOptions</span><span class="o">&lt;</span><span class="n">ListEventsQuery</span><span class="p">,</span> <span class="n">ListEventsQueryVariables</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="n">ApolloReactHooks</span><span class="o">.</span><span class="n">useLazyQuery</span><span class="o">&lt;</span><span class="n">ListEventsQuery</span><span class="p">,</span> <span class="n">ListEventsQueryVariables</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ListEventsDocument</span><span class="p">,</span> <span class="n">baseOptions</span><span class="p">);</span>
+        <span class="p">}</span>
+<span class="n">export</span> <span class="nb">type</span> <span class="n">ListEventsQueryHookResult</span> <span class="o">=</span> <span class="n">ReturnType</span><span class="o">&lt;</span><span class="n">typeof</span> <span class="n">useListEventsQuery</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="n">export</span> <span class="nb">type</span> <span class="n">ListEventsLazyQueryHookResult</span> <span class="o">=</span> <span class="n">ReturnType</span><span class="o">&lt;</span><span class="n">typeof</span> <span class="n">useListEventsLazyQuery</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="n">export</span> <span class="nb">type</span> <span class="n">ListEventsQueryResult</span> <span class="o">=</span> <span class="n">ApolloReactCommon</span><span class="o">.</span><span class="n">QueryResult</span><span class="o">&lt;</span><span class="n">ListEventsQuery</span><span class="p">,</span> <span class="n">ListEventsQueryVariables</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="n">export</span> <span class="n">const</span> <span class="n">CommentOnEventDocument</span> <span class="o">=</span> <span class="n">gql</span><span class="err">`</span>
+    <span class="n">mutation</span> <span class="n">CommentOnEvent</span><span class="p">(</span><span class="err">$</span><span class="n">content</span><span class="p">:</span> <span class="n">String</span><span class="err">!</span><span class="p">,</span> <span class="err">$</span><span class="n">createdAt</span><span class="p">:</span> <span class="n">String</span><span class="err">!</span><span class="p">,</span> <span class="err">$</span><span class="n">eventId</span><span class="p">:</span> <span class="n">ID</span><span class="err">!</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">commentOnEvent</span><span class="p">(</span><span class="n">content</span><span class="p">:</span> <span class="err">$</span><span class="n">content</span><span class="p">,</span> <span class="n">createdAt</span><span class="p">:</span> <span class="err">$</span><span class="n">createdAt</span><span class="p">,</span> <span class="n">eventId</span><span class="p">:</span> <span class="err">$</span><span class="n">eventId</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">commentId</span>
+    <span class="n">content</span>
+    <span class="n">createdAt</span>
+    <span class="n">eventId</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+    <span class="err">`</span><span class="p">;</span>
+<span class="n">export</span> <span class="nb">type</span> <span class="n">CommentOnEventMutationFn</span> <span class="o">=</span> <span class="n">ApolloReactCommon</span><span class="o">.</span><span class="n">MutationFunction</span><span class="o">&lt;</span><span class="n">CommentOnEventMutation</span><span class="p">,</span> <span class="n">CommentOnEventMutationVariables</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="o">/**</span>
+ <span class="o">*</span> <span class="n">__useCommentOnEventMutation__</span>
+ <span class="o">*</span>
+ <span class="o">*</span> <span class="n">To</span> <span class="n">run</span> <span class="n">a</span> <span class="n">mutation</span><span class="p">,</span> <span class="n">you</span> <span class="n">first</span> <span class="n">call</span> <span class="sb">`useCommentOnEventMutation`</span> <span class="n">within</span> <span class="n">a</span> <span class="n">React</span> <span class="n">component</span> <span class="ow">and</span> <span class="k">pass</span> <span class="n">it</span> <span class="nb">any</span> <span class="n">options</span> <span class="n">that</span> <span class="n">fit</span> <span class="n">your</span> <span class="n">needs</span><span class="o">.</span>
+ <span class="o">*</span> <span class="n">When</span> <span class="n">your</span> <span class="n">component</span> <span class="n">renders</span><span class="p">,</span> <span class="sb">`useCommentOnEventMutation`</span> <span class="n">returns</span> <span class="n">a</span> <span class="nb">tuple</span> <span class="n">that</span> <span class="n">includes</span><span class="p">:</span>
+ <span class="o">*</span> <span class="o">-</span> <span class="n">A</span> <span class="n">mutate</span> <span class="n">function</span> <span class="n">that</span> <span class="n">you</span> <span class="n">can</span> <span class="n">call</span> <span class="n">at</span> <span class="nb">any</span> <span class="n">time</span> <span class="n">to</span> <span class="n">execute</span> <span class="n">the</span> <span class="n">mutation</span>
+ <span class="o">*</span> <span class="o">-</span> <span class="n">An</span> <span class="nb">object</span> <span class="k">with</span> <span class="n">fields</span> <span class="n">that</span> <span class="n">represent</span> <span class="n">the</span> <span class="n">current</span> <span class="n">status</span> <span class="n">of</span> <span class="n">the</span> <span class="n">mutation</span><span class="s1">&#39;s execution</span>
+ <span class="o">*</span>
+ <span class="o">*</span> <span class="nd">@param</span> <span class="n">baseOptions</span> <span class="n">options</span> <span class="n">that</span> <span class="n">will</span> <span class="n">be</span> <span class="n">passed</span> <span class="n">into</span> <span class="n">the</span> <span class="n">mutation</span><span class="p">,</span> <span class="n">supported</span> <span class="n">options</span> <span class="n">are</span> <span class="n">listed</span> <span class="n">on</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">apollographql</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">react</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">react</span><span class="o">-</span><span class="n">hooks</span><span class="o">/</span><span class="c1">#options-2;</span>
+ <span class="o">*</span>
+ <span class="o">*</span> <span class="nd">@example</span>
+ <span class="o">*</span> <span class="n">const</span> <span class="p">[</span><span class="n">commentOnEventMutation</span><span class="p">,</span> <span class="p">{</span> <span class="n">data</span><span class="p">,</span> <span class="n">loading</span><span class="p">,</span> <span class="n">error</span> <span class="p">}]</span> <span class="o">=</span> <span class="n">useCommentOnEventMutation</span><span class="p">({</span>
+ <span class="o">*</span>   <span class="n">variables</span><span class="p">:</span> <span class="p">{</span>
+ <span class="o">*</span>      <span class="n">content</span><span class="p">:</span> <span class="o">//</span> <span class="n">value</span> <span class="k">for</span> <span class="s1">&#39;content&#39;</span>
+ <span class="o">*</span>      <span class="n">createdAt</span><span class="p">:</span> <span class="o">//</span> <span class="n">value</span> <span class="k">for</span> <span class="s1">&#39;createdAt&#39;</span>
+ <span class="o">*</span>      <span class="n">eventId</span><span class="p">:</span> <span class="o">//</span> <span class="n">value</span> <span class="k">for</span> <span class="s1">&#39;eventId&#39;</span>
+ <span class="o">*</span>   <span class="p">},</span>
+ <span class="o">*</span> <span class="p">});</span>
+ <span class="o">*/</span>
+<span class="n">export</span> <span class="n">function</span> <span class="n">useCommentOnEventMutation</span><span class="p">(</span><span class="n">baseOptions</span><span class="err">?</span><span class="p">:</span> <span class="n">ApolloReactHooks</span><span class="o">.</span><span class="n">MutationHookOptions</span><span class="o">&lt;</span><span class="n">CommentOnEventMutation</span><span class="p">,</span> <span class="n">CommentOnEventMutationVariables</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">ApolloReactHooks</span><span class="o">.</span><span class="n">useMutation</span><span class="o">&lt;</span><span class="n">CommentOnEventMutation</span><span class="p">,</span> <span class="n">CommentOnEventMutationVariables</span><span class="o">&gt;</span><span class="p">(</span><span class="n">CommentOnEventDocument</span><span class="p">,</span> <span class="n">baseOptions</span><span class="p">);</span>
+      <span class="p">}</span>
+<span class="n">export</span> <span class="nb">type</span> <span class="n">CommentOnEventMutationHookResult</span> <span class="o">=</span> <span class="n">ReturnType</span><span class="o">&lt;</span><span class="n">typeof</span> <span class="n">useCommentOnEventMutation</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="n">export</span> <span class="nb">type</span> <span class="n">CommentOnEventMutationResult</span> <span class="o">=</span> <span class="n">ApolloReactCommon</span><span class="o">.</span><span class="n">MutationResult</span><span class="o">&lt;</span><span class="n">CommentOnEventMutation</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="n">export</span> <span class="nb">type</span> <span class="n">CommentOnEventMutationOptions</span> <span class="o">=</span> <span class="n">ApolloReactCommon</span><span class="o">.</span><span class="n">BaseMutationOptions</span><span class="o">&lt;</span><span class="n">CommentOnEventMutation</span><span class="p">,</span> <span class="n">CommentOnEventMutationVariables</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="n">export</span> <span class="n">const</span> <span class="n">CreateEventDocument</span> <span class="o">=</span> <span class="n">gql</span><span class="err">`</span>
+    <span class="n">mutation</span> <span class="n">CreateEvent</span><span class="p">(</span><span class="err">$</span><span class="n">description</span><span class="p">:</span> <span class="n">String</span><span class="err">!</span><span class="p">,</span> <span class="err">$</span><span class="n">name</span><span class="p">:</span> <span class="n">String</span><span class="err">!</span><span class="p">,</span> <span class="err">$</span><span class="n">when</span><span class="p">:</span> <span class="n">String</span><span class="err">!</span><span class="p">,</span> <span class="err">$</span><span class="n">where</span><span class="p">:</span> <span class="n">String</span><span class="err">!</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">createEvent</span><span class="p">(</span><span class="n">description</span><span class="p">:</span> <span class="err">$</span><span class="n">description</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="err">$</span><span class="n">name</span><span class="p">,</span> <span class="n">when</span><span class="p">:</span> <span class="err">$</span><span class="n">when</span><span class="p">,</span> <span class="n">where</span><span class="p">:</span> <span class="err">$</span><span class="n">where</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">comments</span> <span class="p">{</span>
+      <span class="n">nextToken</span>
+    <span class="p">}</span>
+    <span class="n">description</span>
+    <span class="nb">id</span>
+    <span class="n">name</span>
+    <span class="n">when</span>
+    <span class="n">where</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+    <span class="err">`</span><span class="p">;</span>
+<span class="n">export</span> <span class="nb">type</span> <span class="n">CreateEventMutationFn</span> <span class="o">=</span> <span class="n">ApolloReactCommon</span><span class="o">.</span><span class="n">MutationFunction</span><span class="o">&lt;</span><span class="n">CreateEventMutation</span><span class="p">,</span> <span class="n">CreateEventMutationVariables</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="o">/**</span>
+ <span class="o">*</span> <span class="n">__useCreateEventMutation__</span>
+ <span class="o">*</span>
+ <span class="o">*</span> <span class="n">To</span> <span class="n">run</span> <span class="n">a</span> <span class="n">mutation</span><span class="p">,</span> <span class="n">you</span> <span class="n">first</span> <span class="n">call</span> <span class="sb">`useCreateEventMutation`</span> <span class="n">within</span> <span class="n">a</span> <span class="n">React</span> <span class="n">component</span> <span class="ow">and</span> <span class="k">pass</span> <span class="n">it</span> <span class="nb">any</span> <span class="n">options</span> <span class="n">that</span> <span class="n">fit</span> <span class="n">your</span> <span class="n">needs</span><span class="o">.</span>
+ <span class="o">*</span> <span class="n">When</span> <span class="n">your</span> <span class="n">component</span> <span class="n">renders</span><span class="p">,</span> <span class="sb">`useCreateEventMutation`</span> <span class="n">returns</span> <span class="n">a</span> <span class="nb">tuple</span> <span class="n">that</span> <span class="n">includes</span><span class="p">:</span>
+ <span class="o">*</span> <span class="o">-</span> <span class="n">A</span> <span class="n">mutate</span> <span class="n">function</span> <span class="n">that</span> <span class="n">you</span> <span class="n">can</span> <span class="n">call</span> <span class="n">at</span> <span class="nb">any</span> <span class="n">time</span> <span class="n">to</span> <span class="n">execute</span> <span class="n">the</span> <span class="n">mutation</span>
+ <span class="o">*</span> <span class="o">-</span> <span class="n">An</span> <span class="nb">object</span> <span class="k">with</span> <span class="n">fields</span> <span class="n">that</span> <span class="n">represent</span> <span class="n">the</span> <span class="n">current</span> <span class="n">status</span> <span class="n">of</span> <span class="n">the</span> <span class="n">mutation</span><span class="s1">&#39;s execution</span>
+ <span class="o">*</span>
+ <span class="o">*</span> <span class="nd">@param</span> <span class="n">baseOptions</span> <span class="n">options</span> <span class="n">that</span> <span class="n">will</span> <span class="n">be</span> <span class="n">passed</span> <span class="n">into</span> <span class="n">the</span> <span class="n">mutation</span><span class="p">,</span> <span class="n">supported</span> <span class="n">options</span> <span class="n">are</span> <span class="n">listed</span> <span class="n">on</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">apollographql</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">react</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">react</span><span class="o">-</span><span class="n">hooks</span><span class="o">/</span><span class="c1">#options-2;</span>
+ <span class="o">*</span>
+ <span class="o">*</span> <span class="nd">@example</span>
+ <span class="o">*</span> <span class="n">const</span> <span class="p">[</span><span class="n">createEventMutation</span><span class="p">,</span> <span class="p">{</span> <span class="n">data</span><span class="p">,</span> <span class="n">loading</span><span class="p">,</span> <span class="n">error</span> <span class="p">}]</span> <span class="o">=</span> <span class="n">useCreateEventMutation</span><span class="p">({</span>
+ <span class="o">*</span>   <span class="n">variables</span><span class="p">:</span> <span class="p">{</span>
+ <span class="o">*</span>      <span class="n">description</span><span class="p">:</span> <span class="o">//</span> <span class="n">value</span> <span class="k">for</span> <span class="s1">&#39;description&#39;</span>
+ <span class="o">*</span>      <span class="n">name</span><span class="p">:</span> <span class="o">//</span> <span class="n">value</span> <span class="k">for</span> <span class="s1">&#39;name&#39;</span>
+ <span class="o">*</span>      <span class="n">when</span><span class="p">:</span> <span class="o">//</span> <span class="n">value</span> <span class="k">for</span> <span class="s1">&#39;when&#39;</span>
+ <span class="o">*</span>      <span class="n">where</span><span class="p">:</span> <span class="o">//</span> <span class="n">value</span> <span class="k">for</span> <span class="s1">&#39;where&#39;</span>
+ <span class="o">*</span>   <span class="p">},</span>
+ <span class="o">*</span> <span class="p">});</span>
+ <span class="o">*/</span>
+<span class="n">export</span> <span class="n">function</span> <span class="n">useCreateEventMutation</span><span class="p">(</span><span class="n">baseOptions</span><span class="err">?</span><span class="p">:</span> <span class="n">ApolloReactHooks</span><span class="o">.</span><span class="n">MutationHookOptions</span><span class="o">&lt;</span><span class="n">CreateEventMutation</span><span class="p">,</span> <span class="n">CreateEventMutationVariables</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">ApolloReactHooks</span><span class="o">.</span><span class="n">useMutation</span><span class="o">&lt;</span><span class="n">CreateEventMutation</span><span class="p">,</span> <span class="n">CreateEventMutationVariables</span><span class="o">&gt;</span><span class="p">(</span><span class="n">CreateEventDocument</span><span class="p">,</span> <span class="n">baseOptions</span><span class="p">);</span>
+      <span class="p">}</span>
+<span class="n">export</span> <span class="nb">type</span> <span class="n">CreateEventMutationHookResult</span> <span class="o">=</span> <span class="n">ReturnType</span><span class="o">&lt;</span><span class="n">typeof</span> <span class="n">useCreateEventMutation</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="n">export</span> <span class="nb">type</span> <span class="n">CreateEventMutationResult</span> <span class="o">=</span> <span class="n">ApolloReactCommon</span><span class="o">.</span><span class="n">MutationResult</span><span class="o">&lt;</span><span class="n">CreateEventMutation</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="n">export</span> <span class="nb">type</span> <span class="n">CreateEventMutationOptions</span> <span class="o">=</span> <span class="n">ApolloReactCommon</span><span class="o">.</span><span class="n">BaseMutationOptions</span><span class="o">&lt;</span><span class="n">CreateEventMutation</span><span class="p">,</span> <span class="n">CreateEventMutationVariables</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="n">export</span> <span class="n">const</span> <span class="n">DeleteEventDocument</span> <span class="o">=</span> <span class="n">gql</span><span class="err">`</span>
+    <span class="n">mutation</span> <span class="n">DeleteEvent</span><span class="p">(</span><span class="err">$</span><span class="nb">id</span><span class="p">:</span> <span class="n">ID</span><span class="err">!</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">deleteEvent</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="err">$</span><span class="nb">id</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">comments</span> <span class="p">{</span>
+      <span class="n">nextToken</span>
+    <span class="p">}</span>
+    <span class="n">description</span>
+    <span class="nb">id</span>
+    <span class="n">name</span>
+    <span class="n">when</span>
+    <span class="n">where</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+    <span class="err">`</span><span class="p">;</span>
+<span class="n">export</span> <span class="nb">type</span> <span class="n">DeleteEventMutationFn</span> <span class="o">=</span> <span class="n">ApolloReactCommon</span><span class="o">.</span><span class="n">MutationFunction</span><span class="o">&lt;</span><span class="n">DeleteEventMutation</span><span class="p">,</span> <span class="n">DeleteEventMutationVariables</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="o">/**</span>
+ <span class="o">*</span> <span class="n">__useDeleteEventMutation__</span>
+ <span class="o">*</span>
+ <span class="o">*</span> <span class="n">To</span> <span class="n">run</span> <span class="n">a</span> <span class="n">mutation</span><span class="p">,</span> <span class="n">you</span> <span class="n">first</span> <span class="n">call</span> <span class="sb">`useDeleteEventMutation`</span> <span class="n">within</span> <span class="n">a</span> <span class="n">React</span> <span class="n">component</span> <span class="ow">and</span> <span class="k">pass</span> <span class="n">it</span> <span class="nb">any</span> <span class="n">options</span> <span class="n">that</span> <span class="n">fit</span> <span class="n">your</span> <span class="n">needs</span><span class="o">.</span>
+ <span class="o">*</span> <span class="n">When</span> <span class="n">your</span> <span class="n">component</span> <span class="n">renders</span><span class="p">,</span> <span class="sb">`useDeleteEventMutation`</span> <span class="n">returns</span> <span class="n">a</span> <span class="nb">tuple</span> <span class="n">that</span> <span class="n">includes</span><span class="p">:</span>
+ <span class="o">*</span> <span class="o">-</span> <span class="n">A</span> <span class="n">mutate</span> <span class="n">function</span> <span class="n">that</span> <span class="n">you</span> <span class="n">can</span> <span class="n">call</span> <span class="n">at</span> <span class="nb">any</span> <span class="n">time</span> <span class="n">to</span> <span class="n">execute</span> <span class="n">the</span> <span class="n">mutation</span>
+ <span class="o">*</span> <span class="o">-</span> <span class="n">An</span> <span class="nb">object</span> <span class="k">with</span> <span class="n">fields</span> <span class="n">that</span> <span class="n">represent</span> <span class="n">the</span> <span class="n">current</span> <span class="n">status</span> <span class="n">of</span> <span class="n">the</span> <span class="n">mutation</span><span class="s1">&#39;s execution</span>
+ <span class="o">*</span>
+ <span class="o">*</span> <span class="nd">@param</span> <span class="n">baseOptions</span> <span class="n">options</span> <span class="n">that</span> <span class="n">will</span> <span class="n">be</span> <span class="n">passed</span> <span class="n">into</span> <span class="n">the</span> <span class="n">mutation</span><span class="p">,</span> <span class="n">supported</span> <span class="n">options</span> <span class="n">are</span> <span class="n">listed</span> <span class="n">on</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">apollographql</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">react</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">react</span><span class="o">-</span><span class="n">hooks</span><span class="o">/</span><span class="c1">#options-2;</span>
+ <span class="o">*</span>
+ <span class="o">*</span> <span class="nd">@example</span>
+ <span class="o">*</span> <span class="n">const</span> <span class="p">[</span><span class="n">deleteEventMutation</span><span class="p">,</span> <span class="p">{</span> <span class="n">data</span><span class="p">,</span> <span class="n">loading</span><span class="p">,</span> <span class="n">error</span> <span class="p">}]</span> <span class="o">=</span> <span class="n">useDeleteEventMutation</span><span class="p">({</span>
+ <span class="o">*</span>   <span class="n">variables</span><span class="p">:</span> <span class="p">{</span>
+ <span class="o">*</span>      <span class="nb">id</span><span class="p">:</span> <span class="o">//</span> <span class="n">value</span> <span class="k">for</span> <span class="s1">&#39;id&#39;</span>
+ <span class="o">*</span>   <span class="p">},</span>
+ <span class="o">*</span> <span class="p">});</span>
+ <span class="o">*/</span>
+<span class="n">export</span> <span class="n">function</span> <span class="n">useDeleteEventMutation</span><span class="p">(</span><span class="n">baseOptions</span><span class="err">?</span><span class="p">:</span> <span class="n">ApolloReactHooks</span><span class="o">.</span><span class="n">MutationHookOptions</span><span class="o">&lt;</span><span class="n">DeleteEventMutation</span><span class="p">,</span> <span class="n">DeleteEventMutationVariables</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">ApolloReactHooks</span><span class="o">.</span><span class="n">useMutation</span><span class="o">&lt;</span><span class="n">DeleteEventMutation</span><span class="p">,</span> <span class="n">DeleteEventMutationVariables</span><span class="o">&gt;</span><span class="p">(</span><span class="n">DeleteEventDocument</span><span class="p">,</span> <span class="n">baseOptions</span><span class="p">);</span>
+      <span class="p">}</span>
+<span class="n">export</span> <span class="nb">type</span> <span class="n">DeleteEventMutationHookResult</span> <span class="o">=</span> <span class="n">ReturnType</span><span class="o">&lt;</span><span class="n">typeof</span> <span class="n">useDeleteEventMutation</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="n">export</span> <span class="nb">type</span> <span class="n">DeleteEventMutationResult</span> <span class="o">=</span> <span class="n">ApolloReactCommon</span><span class="o">.</span><span class="n">MutationResult</span><span class="o">&lt;</span><span class="n">DeleteEventMutation</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="n">export</span> <span class="nb">type</span> <span class="n">DeleteEventMutationOptions</span> <span class="o">=</span> <span class="n">ApolloReactCommon</span><span class="o">.</span><span class="n">BaseMutationOptions</span><span class="o">&lt;</span><span class="n">DeleteEventMutation</span><span class="p">,</span> <span class="n">DeleteEventMutationVariables</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="n">export</span> <span class="n">const</span> <span class="n">SubscribeToEventCommentsDocument</span> <span class="o">=</span> <span class="n">gql</span><span class="err">`</span>
+    <span class="n">subscription</span> <span class="n">SubscribeToEventComments</span><span class="p">(</span><span class="err">$</span><span class="n">eventId</span><span class="p">:</span> <span class="n">String</span><span class="err">!</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">subscribeToEventComments</span><span class="p">(</span><span class="n">eventId</span><span class="p">:</span> <span class="err">$</span><span class="n">eventId</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">commentId</span>
+    <span class="n">content</span>
+    <span class="n">createdAt</span>
+    <span class="n">eventId</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+    <span class="err">`</span><span class="p">;</span>
+
+<span class="o">/**</span>
+ <span class="o">*</span> <span class="n">__useSubscribeToEventCommentsSubscription__</span>
+ <span class="o">*</span>
+ <span class="o">*</span> <span class="n">To</span> <span class="n">run</span> <span class="n">a</span> <span class="n">query</span> <span class="n">within</span> <span class="n">a</span> <span class="n">React</span> <span class="n">component</span><span class="p">,</span> <span class="n">call</span> <span class="sb">`useSubscribeToEventCommentsSubscription`</span> <span class="ow">and</span> <span class="k">pass</span> <span class="n">it</span> <span class="nb">any</span> <span class="n">options</span> <span class="n">that</span> <span class="n">fit</span> <span class="n">your</span> <span class="n">needs</span><span class="o">.</span>
+ <span class="o">*</span> <span class="n">When</span> <span class="n">your</span> <span class="n">component</span> <span class="n">renders</span><span class="p">,</span> <span class="sb">`useSubscribeToEventCommentsSubscription`</span> <span class="n">returns</span> <span class="n">an</span> <span class="nb">object</span> <span class="kn">from</span> <span class="nn">Apollo</span> <span class="nn">Client</span> <span class="nn">that</span> <span class="nn">contains</span> <span class="nn">loading</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="ow">and</span> <span class="n">data</span> <span class="n">properties</span>
+ <span class="o">*</span> <span class="n">you</span> <span class="n">can</span> <span class="n">use</span> <span class="n">to</span> <span class="n">render</span> <span class="n">your</span> <span class="n">UI</span><span class="o">.</span>
+ <span class="o">*</span>
+ <span class="o">*</span> <span class="nd">@param</span> <span class="n">baseOptions</span> <span class="n">options</span> <span class="n">that</span> <span class="n">will</span> <span class="n">be</span> <span class="n">passed</span> <span class="n">into</span> <span class="n">the</span> <span class="n">subscription</span><span class="p">,</span> <span class="n">supported</span> <span class="n">options</span> <span class="n">are</span> <span class="n">listed</span> <span class="n">on</span><span class="p">:</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">apollographql</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">react</span><span class="o">/</span><span class="n">api</span><span class="o">/</span><span class="n">react</span><span class="o">-</span><span class="n">hooks</span><span class="o">/</span><span class="c1">#options;</span>
+ <span class="o">*</span>
+ <span class="o">*</span> <span class="nd">@example</span>
+ <span class="o">*</span> <span class="n">const</span> <span class="p">{</span> <span class="n">data</span><span class="p">,</span> <span class="n">loading</span><span class="p">,</span> <span class="n">error</span> <span class="p">}</span> <span class="o">=</span> <span class="n">useSubscribeToEventCommentsSubscription</span><span class="p">({</span>
+ <span class="o">*</span>   <span class="n">variables</span><span class="p">:</span> <span class="p">{</span>
+ <span class="o">*</span>      <span class="n">eventId</span><span class="p">:</span> <span class="o">//</span> <span class="n">value</span> <span class="k">for</span> <span class="s1">&#39;eventId&#39;</span>
+ <span class="o">*</span>   <span class="p">},</span>
+ <span class="o">*</span> <span class="p">});</span>
+ <span class="o">*/</span>
+<span class="n">export</span> <span class="n">function</span> <span class="n">useSubscribeToEventCommentsSubscription</span><span class="p">(</span><span class="n">baseOptions</span><span class="err">?</span><span class="p">:</span> <span class="n">ApolloReactHooks</span><span class="o">.</span><span class="n">SubscriptionHookOptions</span><span class="o">&lt;</span><span class="n">SubscribeToEventCommentsSubscription</span><span class="p">,</span> <span class="n">SubscribeToEventCommentsSubscriptionVariables</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">ApolloReactHooks</span><span class="o">.</span><span class="n">useSubscription</span><span class="o">&lt;</span><span class="n">SubscribeToEventCommentsSubscription</span><span class="p">,</span> <span class="n">SubscribeToEventCommentsSubscriptionVariables</span><span class="o">&gt;</span><span class="p">(</span><span class="n">SubscribeToEventCommentsDocument</span><span class="p">,</span> <span class="n">baseOptions</span><span class="p">);</span>
+      <span class="p">}</span>
+<span class="n">export</span> <span class="nb">type</span> <span class="n">SubscribeToEventCommentsSubscriptionHookResult</span> <span class="o">=</span> <span class="n">ReturnType</span><span class="o">&lt;</span><span class="n">typeof</span> <span class="n">useSubscribeToEventCommentsSubscription</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="n">export</span> <span class="nb">type</span> <span class="n">SubscribeToEventCommentsSubscriptionResult</span> <span class="o">=</span> <span class="n">ApolloReactCommon</span><span class="o">.</span><span class="n">SubscriptionResult</span><span class="o">&lt;</span><span class="n">SubscribeToEventCommentsSubscription</span><span class="o">&gt;</span><span class="p">;</span>
+</code></pre></div>
                 
               
               
