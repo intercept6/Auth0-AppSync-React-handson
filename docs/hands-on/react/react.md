@@ -401,6 +401,7 @@ export const PrivateRoute: React.FC<RouteProps> = ({ component: Component, path,
 `App.tsx`を変更して、Profile画面をPrivate Routeで保護します．
 
 ```typescript
+// ./src/App.tsx
 import React from "react";
 import { NavBar } from "./components/NavBar";
 import { Router, Route, Switch } from "react-router-dom";
@@ -511,7 +512,7 @@ generates:
 yarn graphql-codegen --config codegen.yml
 ```
 
-Schemaに変更があった場合に簡単に再生成ができるように、NPM Scriptsを書いておきます．これで yarn codegen とする事で再生成が行なえます．
+Schemaに変更があった場合に簡単に再生成ができるように，npm scriptsを書いておきます．これで`yarn codegen`とする事で再生成が行なえます．
 
 ```json
 // ./package.json
@@ -528,6 +529,276 @@ Schemaに変更があった場合に簡単に再生成ができるように、NP
 各クエリー、ミューテーション、サブスクリプションに対するApollo ClientのReact Custom Hookが生成されました．Apollo Clientはかなりインテリジェントでfetch moreやpolling処理などが実装済みです．
 この様にフロントエンドとバックエンドで型を共有し、さらにAPIアクセス部分のコードを自動生成できる事は、AppSync（GraphQL）使う非常に大きなメリットです。
 取得・生成されたファイルは付録の章で確認できます．
+
+## 認証を連携しクエリーする
+
+Auth0からApollo ClientへTokenの受け渡しと、生成されたReact Custom Hookを使って、CRUD操作を実行します．
+
+必要なパッケージをインストールします．
+
+```bash
+yarn add \
+apollo-client@2.6.8 \
+apollo-cache-inmemory@1.6.5 \
+apollo-link-context@1.0.20 \
+apollo-link-http@1.5.17 \
+react-apollo@3.1.5
+```
+
+Auth0とAppSyncの設定をアプリケーションが取り込めるようにJSONファイルを更新＆作成します．`auth-config.json`に*audience*を追加します．
+
+```json
+// ./src/auth-config.json
+{
+  "domain": "YOUR_DOMAIN",
+  "clientId": "YOUR_CLIENT_ID",
+  "audience": "YOUR_AUDIENCE"
+}
+```
+
+`app-sync-config.json`を作成し、uriにAppSyncのエンドポイントを入力します．
+
+![AppSync Endpoint](img/appsync-endpoint.png)
+
+```json
+// ./src/app-sync-cofig.json
+{
+  "uri": "YOUR_API_URL"
+}
+```
+
+Auth0からTokenを受け取り、`authorization`ヘッダーにセットする`ApolloProvider`の`Wrapper`、`AuthorizedApolloProvider`を作成します．
+
+```typescript
+// ./src/authorized-apollo-client.tsx
+import React from 'react';
+import { useAuth0 } from './react-auth0-spa';
+import { HttpLink } from 'apollo-link-http';
+import appSyncConfig from './app-sync-config.json';
+import { setContext } from 'apollo-link-context';
+import { ApolloLink } from 'apollo-link';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ApolloClient } from 'apollo-client';
+import { ApolloProvider } from '@apollo/react-hooks';
+
+export const AuthorizedApolloProvider: React.FC = ({children}) => {
+  const [token, setToken] = React.useState<string>('');
+  const {loading, getTokenSilently} = useAuth0();
+
+  if (loading) {
+    return <h1>Loading...</h1>;
+  }
+
+  const httpLink = new HttpLink({
+    uri: appSyncConfig.uri,
+    fetchOptions: {credentials: 'same-origin'}
+  });
+
+  const withTokenLink = setContext(async () => {
+    if (token) {
+      return {auth0Token: token};
+    }
+
+    const newToken = await getTokenSilently();
+    setToken(newToken);
+    return {auth0Token: newToken};
+  });
+
+  const authLink = setContext((_, {headers, auth0Token}) => ({
+    headers: {
+      ...headers,
+      ...(auth0Token ? {authorization: auth0Token} : {})
+    }
+  }));
+
+  const client = new ApolloClient({
+    link: ApolloLink.from([withTokenLink, authLink, httpLink]),
+    cache: new InMemoryCache()
+  });
+
+  return (
+    <ApolloProvider client={client}>
+      {children}
+    </ApolloProvider>
+  );
+};
+```
+
+作成した`AuthorizedApolloProvider`をアプリケーションに統合します．合わせて、`Auth0Provider`に`audience`を設定します．
+
+```typescript
+// .src/index.tsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { App } from './App';
+import * as serviceWorker from './serviceWorker';
+import { history } from './utils/history';
+import { Auth0Provider } from './react-auth0-spa';
+import authConfig from './auth-config.json';
+import { AuthorizedApolloProvider } from './authorized-apollo-client';
+
+const onRedirectCallback = async (url?: string) => {
+  history.push(url ?? window.location.pathname);
+};
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Auth0Provider
+      domain={authConfig.domain}
+      client_id={authConfig.clientId}
+      redirect_uri={window.location.origin}
+      audience={authConfig.audience}
+      onRedirectCallback={onRedirectCallback}
+    >
+      <AuthorizedApolloProvider>
+        <App />
+      </AuthorizedApolloProvider>
+    </Auth0Provider>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();
+```
+
+Eventsに対してCRUDするコンポーネントを作成します．とりあえず動けば良いのでOptimistic UIせずリフェッチで済ませています．
+
+```typescript
+// ./src/components/DemoTable.tsx
+import React from 'react';
+import { useCreateEventMutation, useDeleteEventMutation, useListEventsQuery } from '../graphql/generated';
+
+const limit = 100;
+
+export const DemoTable: React.FC = () => {
+  const { data, refetch } = useListEventsQuery({variables: {limit}});
+  const [ addEvent ] = useCreateEventMutation();
+  const [ deleteData ] = useDeleteEventMutation();
+
+  const handleCreateClick = async () => {
+    await addEvent({
+      variables: {
+        name: "My First Event",
+        when: "Today",
+        where: "My House",
+        description: "Very first event",
+      }
+    })
+    // FIXME: リフェッチせずにキャッシュを書き換えるべき
+    await refetch();
+  }
+
+  const handleDeleteClick = async (id?: string) => {
+    if (id == null) {
+      return
+    }
+    await deleteData({variables: {id}})
+    // FIXME: リフェッチせずにキャッシュを書き換えるべき
+    await refetch();
+  }
+
+  return (
+    <>
+      <h1>Events 100件まで表示</h1>
+      <button onClick={() => {handleCreateClick()}}>作成する</button>
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>When</th>
+          <th>Where</th>
+        </tr>
+        </thead>
+        <tbody>
+          {
+            data?.listEvents?.items?.map(value => (
+              <tr key={value?.id}>
+                <td>{value?.id}</td>
+                <td>{value?.name}</td>
+                <td>{value?.description}</td>
+                <td>{value?.when}</td>
+                <td>{value?.where}</td>
+                <td><button onClick={() => {handleDeleteClick(value?.id)}}>削除する</button></td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </>
+  );
+};
+
+```
+
+`NavBar.tsx`に`DemoTable`へのリンクを設定します．
+
+```typescript
+// ./src/components/NavBar
+import React from 'react';
+import { useAuth0 } from '../react-auth0-spa';
+import { Link } from 'react-router-dom';
+
+export const NavBar = () => {
+  const {isAuthenticated, loginWithRedirect, logout} = useAuth0();
+
+  return (
+    <div>
+      {!isAuthenticated && (
+        <button onClick={() => loginWithRedirect()}>Log in</button>
+      )}
+      {isAuthenticated && (
+        <>
+          <button onClick={() => logout()}>Log out</button>
+          <span>
+            <Link to="/">Home</Link> | <Link to="/profile">Profile</Link> | <Link to="/demo-table">Demo Table</Link>
+          </span>
+        </>
+      )}
+    </div>
+  );
+};
+
+```
+
+ルーティングを設定します．
+
+```typescript
+// ./src/App.tsx
+import React from "react";
+import { NavBar } from "./components/NavBar";
+import { Router, Route, Switch } from "react-router-dom";
+import { Profile } from "./components/Profile";
+import { DemoTable } from "./components/DemoTable";
+import { history } from "./utils/history";
+import { PrivateRoute } from './components/PrivateRoute';
+
+export const App = () => {
+  return (
+    <div className="App">
+      <Router history={history}>
+        <header>
+          <NavBar />
+        </header>
+        <Switch>
+          <Route path="/" exact />
+          <PrivateRoute path="/profile" component={Profile} />
+          <PrivateRoute path="/demo-table" component={DemoTable} />
+        </Switch>
+      </Router>
+    </div>
+  );
+};
+
+```
+
+これで完成です．Demo Tableページを開きCRUD操作が行えるか確認します．無事に作成できれば完了です．
+
+![Demo](img/app-demo.png)
 
 ## 付録
 
