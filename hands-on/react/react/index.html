@@ -252,6 +252,13 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
+    認証を連携しクエリーする
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
     付録
   </a>
   
@@ -344,6 +351,13 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
+    認証を連携しクエリーする
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
     付録
   </a>
   
@@ -393,10 +407,7 @@
                 
                 
                 <h1 id="react">Reactでサンプルアプリを構築する</h1>
-<p>作成したAppSyncにを利用するフロントエンドアプリケーションをReactで作成しましょう．</p>
-<!-- TODO: Reactに関する簡単な説明 -->
-
-<p>TODO: Reactに関する簡単な説明 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>
+<p>作成したAppSyncにを利用するフロントエンドアプリケーションを<a href="https://ja.reactjs.org/">React</a>で作成しましょう．</p>
 <h2 id="create-react-app">Create React Appを使ってセットアップする</h2>
 <p>Create React App（CRA）を使ってアプリケーションを生成します．任意の作業用ディレクトリに移動後、下記のコマンドを実行します．</p>
 <div class="codehilite"><pre><span></span><code>npx create-react-app@3.4.1 --template typescript react-appsync-protected-by-auth0
@@ -749,7 +760,8 @@ useHistory() Hookを使わずに、createBrowserHistory()を使っているの�
 
 
 <p><code>App.tsx</code>を変更して、Profile画面をPrivate Routeで保護します．</p>
-<div class="codehilite"><pre><span></span><code><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&quot;react&quot;</span><span class="p">;</span>
+<div class="codehilite"><pre><span></span><code><span class="c1">// ./src/App.tsx</span>
+<span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&quot;react&quot;</span><span class="p">;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">NavBar</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;./components/NavBar&quot;</span><span class="p">;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">Router</span><span class="p">,</span> <span class="nx">Route</span><span class="p">,</span> <span class="nx">Switch</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;react-router-dom&quot;</span><span class="p">;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">Profile</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;./components/Profile&quot;</span><span class="p">;</span>
@@ -841,7 +853,7 @@ yarn add -D <span class="se">\</span>
 </code></pre></div>
 
 
-<p>Schemaに変更があった場合に簡単に再生成ができるように、NPM Scriptsを書いておきます．これで yarn codegen とする事で再生成が行なえます．</p>
+<p>Schemaに変更があった場合に簡単に再生成ができるように，npm scriptsを書いておきます．これで<code>yarn codegen</code>とする事で再生成が行なえます．</p>
 <div class="codehilite"><pre><span></span><code><span class="err">//</span> <span class="err">./package.json</span>
 <span class="err">...,</span>
 <span class="s2">&quot;scripts&quot;</span><span class="err">:</span> <span class="p">{</span>
@@ -857,7 +869,261 @@ yarn add -D <span class="se">\</span>
 <p>各クエリー、ミューテーション、サブスクリプションに対するApollo ClientのReact Custom Hookが生成されました．Apollo Clientはかなりインテリジェントでfetch moreやpolling処理などが実装済みです．
 この様にフロントエンドとバックエンドで型を共有し、さらにAPIアクセス部分のコードを自動生成できる事は、AppSync（GraphQL）使う非常に大きなメリットです。
 取得・生成されたファイルは付録の章で確認できます．</p>
-<h2 id="_2">付録</h2>
+<h2 id="_2">認証を連携しクエリーする</h2>
+<p>Auth0からApollo ClientへTokenの受け渡しと、生成されたReact Custom Hookを使って、CRUD操作を実行します．</p>
+<p>必要なパッケージをインストールします．</p>
+<div class="codehilite"><pre><span></span><code>yarn add <span class="se">\</span>
+apollo-client@2.6.8 <span class="se">\</span>
+apollo-cache-inmemory@1.6.5 <span class="se">\</span>
+apollo-link-context@1.0.20 <span class="se">\</span>
+apollo-link-http@1.5.17 <span class="se">\</span>
+react-apollo@3.1.5
+</code></pre></div>
+
+
+<p>Auth0とAppSyncの設定をアプリケーションが取り込めるようにJSONファイルを更新＆作成します．<code>auth-config.json</code>に<em>audience</em>を追加します．</p>
+<div class="codehilite"><pre><span></span><code><span class="err">//</span> <span class="err">./src/auth-config.json</span>
+<span class="p">{</span>
+  <span class="nt">&quot;domain&quot;</span><span class="p">:</span> <span class="s2">&quot;YOUR_DOMAIN&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;clientId&quot;</span><span class="p">:</span> <span class="s2">&quot;YOUR_CLIENT_ID&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;audience&quot;</span><span class="p">:</span> <span class="s2">&quot;YOUR_AUDIENCE&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<p><code>app-sync-config.json</code>を作成し、uriにAppSyncのエンドポイントを入力します．</p>
+<p><img alt="AppSync Endpoint" src="../img/appsync-endpoint.png" /></p>
+<div class="codehilite"><pre><span></span><code><span class="err">//</span> <span class="err">./src/app-sync-cofig.json</span>
+<span class="p">{</span>
+  <span class="nt">&quot;uri&quot;</span><span class="p">:</span> <span class="s2">&quot;YOUR_API_URL&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+<p>Auth0からTokenを受け取り、<code>authorization</code>ヘッダーにセットする<code>ApolloProvider</code>の<code>Wrapper</code>、<code>AuthorizedApolloProvider</code>を作成します．</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// ./src/authorized-apollo-client.tsx</span>
+<span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">useAuth0</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./react-auth0-spa&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">HttpLink</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;apollo-link-http&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">appSyncConfig</span> <span class="nx">from</span> <span class="s1">&#39;./app-sync-config.json&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">setContext</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;apollo-link-context&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">ApolloLink</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;apollo-link&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">InMemoryCache</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;apollo-cache-inmemory&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">ApolloClient</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;apollo-client&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">ApolloProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;@apollo/react-hooks&#39;</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="kr">const</span> <span class="nx">AuthorizedApolloProvider</span>: <span class="kt">React.FC</span> <span class="o">=</span> <span class="p">({</span><span class="nx">children</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">[</span><span class="nx">token</span><span class="p">,</span> <span class="nx">setToken</span><span class="p">]</span> <span class="o">=</span> <span class="nx">React</span><span class="p">.</span><span class="nx">useState</span><span class="o">&lt;</span><span class="kt">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+  <span class="kr">const</span> <span class="p">{</span><span class="nx">loading</span><span class="p">,</span> <span class="nx">getTokenSilently</span><span class="p">}</span> <span class="o">=</span> <span class="nx">useAuth0</span><span class="p">();</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="nx">loading</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Loading</span><span class="p">...</span><span class="o">&lt;</span><span class="err">/h1&gt;;</span>
+  <span class="p">}</span>
+
+  <span class="kr">const</span> <span class="nx">httpLink</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">HttpLink</span><span class="p">({</span>
+    <span class="nx">uri</span>: <span class="kt">appSyncConfig.uri</span><span class="p">,</span>
+    <span class="nx">fetchOptions</span><span class="o">:</span> <span class="p">{</span><span class="nx">credentials</span><span class="o">:</span> <span class="s1">&#39;same-origin&#39;</span><span class="p">}</span>
+  <span class="p">});</span>
+
+  <span class="kr">const</span> <span class="nx">withTokenLink</span> <span class="o">=</span> <span class="nx">setContext</span><span class="p">(</span><span class="nx">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">token</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">{</span><span class="nx">auth0Token</span>: <span class="kt">token</span><span class="p">};</span>
+    <span class="p">}</span>
+
+    <span class="kr">const</span> <span class="nx">newToken</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">getTokenSilently</span><span class="p">();</span>
+    <span class="nx">setToken</span><span class="p">(</span><span class="nx">newToken</span><span class="p">);</span>
+    <span class="k">return</span> <span class="p">{</span><span class="nx">auth0Token</span>: <span class="kt">newToken</span><span class="p">};</span>
+  <span class="p">});</span>
+
+  <span class="kr">const</span> <span class="nx">authLink</span> <span class="o">=</span> <span class="nx">setContext</span><span class="p">((</span><span class="nx">_</span><span class="p">,</span> <span class="p">{</span><span class="nx">headers</span><span class="p">,</span> <span class="nx">auth0Token</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="p">({</span>
+    <span class="nx">headers</span><span class="o">:</span> <span class="p">{</span>
+      <span class="p">...</span><span class="nx">headers</span><span class="p">,</span>
+      <span class="p">...(</span><span class="nx">auth0Token</span> <span class="o">?</span> <span class="p">{</span><span class="nx">authorization</span>: <span class="kt">auth0Token</span><span class="p">}</span> <span class="o">:</span> <span class="p">{})</span>
+    <span class="p">}</span>
+  <span class="p">}));</span>
+
+  <span class="kr">const</span> <span class="nx">client</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ApolloClient</span><span class="p">({</span>
+    <span class="nx">link</span>: <span class="kt">ApolloLink.from</span><span class="p">([</span><span class="nx">withTokenLink</span><span class="p">,</span> <span class="nx">authLink</span><span class="p">,</span> <span class="nx">httpLink</span><span class="p">]),</span>
+    <span class="nx">cache</span>: <span class="kt">new</span> <span class="nx">InMemoryCache</span><span class="p">()</span>
+  <span class="p">});</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">ApolloProvider</span> <span class="nx">client</span><span class="o">=</span><span class="p">{</span><span class="nx">client</span><span class="p">}</span><span class="o">&gt;</span>
+      <span class="p">{</span><span class="nx">children</span><span class="p">}</span>
+    <span class="o">&lt;</span><span class="err">/ApolloProvider&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div>
+
+
+<p>作成した<code>AuthorizedApolloProvider</code>をアプリケーションに統合します．合わせて、<code>Auth0Provider</code>に<code>audience</code>を設定します．</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// .src/index.tsx</span>
+<span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">ReactDOM</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">App</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./App&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="o">*</span> <span class="kr">as</span> <span class="nx">serviceWorker</span> <span class="nx">from</span> <span class="s1">&#39;./serviceWorker&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">history</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./utils/history&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">Auth0Provider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./react-auth0-spa&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">authConfig</span> <span class="nx">from</span> <span class="s1">&#39;./auth-config.json&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">AuthorizedApolloProvider</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./authorized-apollo-client&#39;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">onRedirectCallback</span> <span class="o">=</span> <span class="nx">async</span> <span class="p">(</span><span class="nx">url?</span>: <span class="kt">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">history</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">url</span> <span class="o">??</span> <span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">pathname</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="nx">React</span><span class="p">.</span><span class="nx">StrictMode</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">Auth0Provider</span>
+      <span class="nx">domain</span><span class="o">=</span><span class="p">{</span><span class="nx">authConfig</span><span class="p">.</span><span class="nx">domain</span><span class="p">}</span>
+      <span class="nx">client_id</span><span class="o">=</span><span class="p">{</span><span class="nx">authConfig</span><span class="p">.</span><span class="nx">clientId</span><span class="p">}</span>
+      <span class="nx">redirect_uri</span><span class="o">=</span><span class="p">{</span><span class="nb">window</span><span class="p">.</span><span class="nx">location</span><span class="p">.</span><span class="nx">origin</span><span class="p">}</span>
+      <span class="nx">audience</span><span class="o">=</span><span class="p">{</span><span class="nx">authConfig</span><span class="p">.</span><span class="nx">audience</span><span class="p">}</span>
+      <span class="nx">onRedirectCallback</span><span class="o">=</span><span class="p">{</span><span class="nx">onRedirectCallback</span><span class="p">}</span>
+    <span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">AuthorizedApolloProvider</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">App</span> <span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="err">/AuthorizedApolloProvider&gt;</span>
+    <span class="o">&lt;</span><span class="err">/Auth0Provider&gt;</span>
+  <span class="o">&lt;</span><span class="err">/React.StrictMode&gt;,</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;root&#39;</span><span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">// If you want your app to work offline and load faster, you can change</span>
+<span class="c1">// unregister() to register() below. Note this comes with some pitfalls.</span>
+<span class="c1">// Learn more about service workers: https://bit.ly/CRA-PWA</span>
+<span class="nx">serviceWorker</span><span class="p">.</span><span class="nx">unregister</span><span class="p">();</span>
+</code></pre></div>
+
+
+<p>Eventsに対してCRUDするコンポーネントを作成します．とりあえず動けば良いのでOptimistic UIせずリフェッチで済ませています．</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// ./src/components/DemoTable.tsx</span>
+<span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">useCreateEventMutation</span><span class="p">,</span> <span class="nx">useDeleteEventMutation</span><span class="p">,</span> <span class="nx">useListEventsQuery</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../graphql/generated&#39;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">limit</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="kr">const</span> <span class="nx">DemoTable</span>: <span class="kt">React.FC</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">{</span> <span class="nx">data</span><span class="p">,</span> <span class="nx">refetch</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">useListEventsQuery</span><span class="p">({</span><span class="nx">variables</span><span class="o">:</span> <span class="p">{</span><span class="nx">limit</span><span class="p">}});</span>
+  <span class="kr">const</span> <span class="p">[</span> <span class="nx">addEvent</span> <span class="p">]</span> <span class="o">=</span> <span class="nx">useCreateEventMutation</span><span class="p">();</span>
+  <span class="kr">const</span> <span class="p">[</span> <span class="nx">deleteData</span> <span class="p">]</span> <span class="o">=</span> <span class="nx">useDeleteEventMutation</span><span class="p">();</span>
+
+  <span class="kr">const</span> <span class="nx">handleCreateClick</span> <span class="o">=</span> <span class="nx">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">await</span> <span class="nx">addEvent</span><span class="p">({</span>
+      <span class="nx">variables</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;My First Event&quot;</span><span class="p">,</span>
+        <span class="nx">when</span><span class="o">:</span> <span class="s2">&quot;Today&quot;</span><span class="p">,</span>
+        <span class="nx">where</span><span class="o">:</span> <span class="s2">&quot;My House&quot;</span><span class="p">,</span>
+        <span class="nx">description</span><span class="o">:</span> <span class="s2">&quot;Very first event&quot;</span><span class="p">,</span>
+      <span class="p">}</span>
+    <span class="p">})</span>
+    <span class="c1">// FIXME: リフェッチせずにキャッシュを書き換えるべき</span>
+    <span class="nx">await</span> <span class="nx">refetch</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="kr">const</span> <span class="nx">handleDeleteClick</span> <span class="o">=</span> <span class="nx">async</span> <span class="p">(</span><span class="nx">id?</span>: <span class="kt">string</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">id</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="nx">await</span> <span class="nx">deleteData</span><span class="p">({</span><span class="nx">variables</span><span class="o">:</span> <span class="p">{</span><span class="nx">id</span><span class="p">}})</span>
+    <span class="c1">// FIXME: リフェッチせずにキャッシュを書き換えるべき</span>
+    <span class="nx">await</span> <span class="nx">refetch</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;&gt;</span>
+      <span class="o">&lt;</span><span class="nx">h1</span><span class="o">&gt;</span><span class="nx">Events</span> <span class="mi">100</span><span class="err">件まで表示</span><span class="o">&lt;</span><span class="err">/h1&gt;</span>
+      <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="nx">handleCreateClick</span><span class="p">()}}</span><span class="o">&gt;</span><span class="err">作成する</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+      <span class="o">&lt;</span><span class="nx">table</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">thead</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">tr</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">th</span><span class="o">&gt;</span><span class="nx">ID</span><span class="o">&lt;</span><span class="err">/th&gt;</span>
+          <span class="o">&lt;</span><span class="nx">th</span><span class="o">&gt;</span><span class="nx">Name</span><span class="o">&lt;</span><span class="err">/th&gt;</span>
+          <span class="o">&lt;</span><span class="nx">th</span><span class="o">&gt;</span><span class="nx">Description</span><span class="o">&lt;</span><span class="err">/th&gt;</span>
+          <span class="o">&lt;</span><span class="nx">th</span><span class="o">&gt;</span><span class="nx">When</span><span class="o">&lt;</span><span class="err">/th&gt;</span>
+          <span class="o">&lt;</span><span class="nx">th</span><span class="o">&gt;</span><span class="nx">Where</span><span class="o">&lt;</span><span class="err">/th&gt;</span>
+        <span class="o">&lt;</span><span class="err">/tr&gt;</span>
+        <span class="o">&lt;</span><span class="err">/thead&gt;</span>
+        <span class="o">&lt;</span><span class="nx">tbody</span><span class="o">&gt;</span>
+          <span class="p">{</span>
+            <span class="nx">data</span><span class="o">?</span><span class="p">.</span><span class="nx">listEvents</span><span class="o">?</span><span class="p">.</span><span class="nx">items</span><span class="o">?</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">value</span> <span class="o">=&gt;</span> <span class="p">(</span>
+              <span class="o">&lt;</span><span class="nx">tr</span> <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">value</span><span class="o">?</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="nx">td</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">value</span><span class="o">?</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/td&gt;</span>
+                <span class="o">&lt;</span><span class="nx">td</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">value</span><span class="o">?</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/td&gt;</span>
+                <span class="o">&lt;</span><span class="nx">td</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">value</span><span class="o">?</span><span class="p">.</span><span class="nx">description</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/td&gt;</span>
+                <span class="o">&lt;</span><span class="nx">td</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">value</span><span class="o">?</span><span class="p">.</span><span class="nx">when</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/td&gt;</span>
+                <span class="o">&lt;</span><span class="nx">td</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">value</span><span class="o">?</span><span class="p">.</span><span class="nx">where</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/td&gt;</span>
+                <span class="o">&lt;</span><span class="nx">td</span><span class="o">&gt;&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="p">{</span><span class="nx">handleDeleteClick</span><span class="p">(</span><span class="nx">value</span><span class="o">?</span><span class="p">.</span><span class="nx">id</span><span class="p">)}}</span><span class="o">&gt;</span><span class="err">削除する</span><span class="o">&lt;</span><span class="err">/button&gt;&lt;/td&gt;</span>
+              <span class="o">&lt;</span><span class="err">/tr&gt;</span>
+            <span class="p">))</span>
+          <span class="p">}</span>
+        <span class="o">&lt;</span><span class="err">/tbody&gt;</span>
+      <span class="o">&lt;</span><span class="err">/table&gt;</span>
+    <span class="o">&lt;</span><span class="err">/&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div>
+
+
+<p><code>NavBar.tsx</code>に<code>DemoTable</code>へのリンクを設定します．</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// ./src/components/NavBar</span>
+<span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">useAuth0</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../react-auth0-spa&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">Link</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router-dom&#39;</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="kr">const</span> <span class="nx">NavBar</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="p">{</span><span class="nx">isAuthenticated</span><span class="p">,</span> <span class="nx">loginWithRedirect</span><span class="p">,</span> <span class="nx">logout</span><span class="p">}</span> <span class="o">=</span> <span class="nx">useAuth0</span><span class="p">();</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span><span class="o">&gt;</span>
+      <span class="p">{</span><span class="o">!</span><span class="nx">isAuthenticated</span> <span class="o">&amp;&amp;</span> <span class="p">(</span>
+        <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="nx">loginWithRedirect</span><span class="p">()}</span><span class="o">&gt;</span><span class="nx">Log</span> <span class="k">in</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+      <span class="p">)}</span>
+      <span class="p">{</span><span class="nx">isAuthenticated</span> <span class="o">&amp;&amp;</span> <span class="p">(</span>
+        <span class="o">&lt;&gt;</span>
+          <span class="o">&lt;</span><span class="nx">button</span> <span class="nx">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="nx">logout</span><span class="p">()}</span><span class="o">&gt;</span><span class="nx">Log</span> <span class="nx">out</span><span class="o">&lt;</span><span class="err">/button&gt;</span>
+          <span class="o">&lt;</span><span class="nx">span</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="nx">Link</span> <span class="nx">to</span><span class="o">=</span><span class="s2">&quot;/&quot;</span><span class="o">&gt;</span><span class="nx">Home</span><span class="o">&lt;</span><span class="err">/Link&gt; | &lt;Link to=&quot;/profile&quot;&gt;Profile&lt;/Link&gt; | &lt;Link to=&quot;/demo-table&quot;&gt;Demo Table&lt;/Link&gt;</span>
+          <span class="o">&lt;</span><span class="err">/span&gt;</span>
+        <span class="o">&lt;</span><span class="err">/&gt;</span>
+      <span class="p">)}</span>
+    <span class="o">&lt;</span><span class="err">/div&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div>
+
+
+<p>ルーティングを設定します．</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// ./src/App.tsx</span>
+<span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s2">&quot;react&quot;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">NavBar</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;./components/NavBar&quot;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">Router</span><span class="p">,</span> <span class="nx">Route</span><span class="p">,</span> <span class="nx">Switch</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;react-router-dom&quot;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">Profile</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;./components/Profile&quot;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">DemoTable</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;./components/DemoTable&quot;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">history</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&quot;./utils/history&quot;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">PrivateRoute</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;./components/PrivateRoute&#39;</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="kr">const</span> <span class="nx">App</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Router</span> <span class="nx">history</span><span class="o">=</span><span class="p">{</span><span class="nx">history</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">header</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">NavBar</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="err">/header&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Switch</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">Route</span> <span class="nx">path</span><span class="o">=</span><span class="s2">&quot;/&quot;</span> <span class="nx">exact</span> <span class="o">/&gt;</span>
+          <span class="o">&lt;</span><span class="nx">PrivateRoute</span> <span class="nx">path</span><span class="o">=</span><span class="s2">&quot;/profile&quot;</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">Profile</span><span class="p">}</span> <span class="o">/&gt;</span>
+          <span class="o">&lt;</span><span class="nx">PrivateRoute</span> <span class="nx">path</span><span class="o">=</span><span class="s2">&quot;/demo-table&quot;</span> <span class="nx">component</span><span class="o">=</span><span class="p">{</span><span class="nx">DemoTable</span><span class="p">}</span> <span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="err">/Switch&gt;</span>
+      <span class="o">&lt;</span><span class="err">/Router&gt;</span>
+    <span class="o">&lt;</span><span class="err">/div&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div>
+
+
+<p>これで完成です．Demo Tableページを開きCRUD操作が行えるか確認します．無事に作成できれば完了です．</p>
+<p><img alt="Demo" src="../img/app-demo.png" /></p>
+<h2 id="_3">付録</h2>
 <h3 id="schema">取得したSchema</h3>
 <div class="codehilite"><pre><span></span><code><span class="err">##</span><span class="w">  </span><span class="p">.</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">graphql</span><span class="o">/</span><span class="k">schema</span><span class="p">.</span><span class="n">graphql</span><span class="w"></span>
 <span class="k">schema</span><span class="w"> </span><span class="err">{</span><span class="w"></span>
